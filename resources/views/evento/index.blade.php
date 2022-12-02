@@ -7,7 +7,7 @@
     <div class="container">
         <h1 class="alert alert-primary">Listado de Eventos</h1>
         <hr>
-        <a href="{{route('evento.create')}}" class="btn btn-primary">Registrar un Evento</a>
+        <a class="btn btn-dark" href="{{ url('/home') }}">Inicio</a>&nbsp;<a href="{{route('evento.create')}}" class="btn btn-primary">Registrar un Evento</a>
         <hr>
         <table id="eventos" class="table table-bordered table-striped">
             <thead>

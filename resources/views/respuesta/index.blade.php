@@ -7,7 +7,7 @@
     <div class="container">
         <h1 class="alert alert-primary">Listado de Preguntas y Respuestas</h1>
         <hr>
-        <a href="{{route('respuesta.create')}}" class="btn btn-primary">Registrar una Respuesta para un pregunta</a>
+        <a class="btn btn-dark" href="{{ url('/home') }}">Inicio</a>&nbsp;<a href="{{route('respuesta.create')}}" class="btn btn-primary">Registrar una Respuesta para un pregunta</a>
         <hr>
         <table id="respuesta" class="table table-bordered table-striped">
             <thead>

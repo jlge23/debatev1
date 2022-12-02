@@ -2,15 +2,15 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 $(document).ready(function(){
 
-    const AudioSuccess= new Audio("http://debate.emmaus.lan/build/media/success.mp3");
+    const AudioSuccess= new Audio("http://"+window.location.host+"/build/media/success.mp3");
     AudioSuccess.loop = false;
     AudioSuccess.controls = true;
 
-    const AudioTime= new Audio("http://debate.emmaus.lan/build/media/tiempo.mp3");
+    const AudioTime= new Audio("http://"+window.location.host+"/build/media/tiempo.mp3");
     AudioTime.loop = true;
     AudioTime.controls = true;
 
-    const AudioError= new Audio("http://debate.emmaus.lan/build/media/error.mp3");
+    const AudioError= new Audio("http://"+window.location.host+"/build/media/error.mp3");
     AudioError.loop = false;
     AudioError.controls = true;
     

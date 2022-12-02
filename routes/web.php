@@ -27,9 +27,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 Route::get('/iglesia',[IglesiaController::class,'index'])->name('iglesia.index');
 Route::get('/iglesia/nuevo',[IglesiaController::class,'create'])->name('iglesia.create');
 Route::post('/iglesia',[IglesiaController::class,'store'])->name('iglesia.store');
@@ -84,3 +84,4 @@ Route::delete('juego/{id}',[JuegoController::class,'destroy'])->name('juego.dest
 
 Route::get('informe',[InformeController::class,'index'])->name('informe.index');
 Route::get('informe/grafico/{grafico}',[InformeController::class,'graficos'])->name('informe.grafico');
+});

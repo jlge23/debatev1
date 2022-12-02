@@ -15,6 +15,7 @@ export default defineConfig({
                 'resources/js/puntajes.js',
                 'resources/js/preguntas.js',
                 'resources/js/respuestas.js',
+                'resources/js/juegos.js',
                 'resources/js/relog.js',
                 'resources/js/graficos.js',
                 'resources/js/informes.js',

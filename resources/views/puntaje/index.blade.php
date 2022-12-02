@@ -7,7 +7,7 @@
     <div class="container">
         <h1 class="alert alert-primary">Listado de puntajes para preguntas</h1>
         <hr>
-        <a href="{{route('puntaje.create')}}" class="btn btn-primary">Registrar un Puntaje</a>
+        <a class="btn btn-dark" href="{{ url('/home') }}">Inicio</a>&nbsp;<a href="{{route('puntaje.create')}}" class="btn btn-primary">Registrar un Puntaje</a>
         <hr>
         <table id="puntaje" class="table table-bordered table-striped">
             <thead>

@@ -10,14 +10,14 @@ import 'sweetalert2/src/sweetalert2.scss'
 
 $(document).ready(function(){
     if($("div#inicio").length > 0){
-        const AudioInicio = new Audio("http://debate.emmaus.lan/build/media/inicio.mp3");
+        const AudioInicio = new Audio("http://"+window.location.host+"/build/media/inicio.mp3");
         AudioInicio.loop = false;
         AudioInicio.controls = true;
         AudioInicio.play();
     }
     
     $('input#comodines').on('change',function(){
-        const AudioComodin = new Audio("http://debate.emmaus.lan/build/media/comodines.mp3");
+        const AudioComodin = new Audio("http://"+window.location.host+"/build/media/comodines.mp3");
         AudioComodin.loop = false;
         AudioComodin.controls = true;
         var value = $(this).val();
@@ -194,7 +194,7 @@ $(document).ready(function(){
 
     //audio de pregunta
     if($("body#P").length > 0 ){
-        const AudioPregunta = new Audio("http://debate.emmaus.lan/build/media/pregunta.mp3");
+        const AudioPregunta = new Audio("http://"+window.location.host+"/build/media/pregunta.mp3");
         AudioPregunta.defaultMuted = true;
         AudioPregunta.loop = false;
         AudioPregunta.controls = true;

@@ -29,16 +29,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @guest
+                        <ul class="nav navbar-nav">
+                        </ul>
+                    @else
                     <ul class="nav navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="{{ url('/home') }}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('iglesia') }}">Iglesias</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('evento') }}">Eventos</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('equipo') }}">Equipos</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('puntaje') }}">Puntajes</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('pregunta') }}">Preguntas</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('respuesta') }}">Respuesta</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('juego') }}">Juego</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="{{ url('informe') }}">Informes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('iglesia') }}">Iglesias</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('evento') }}">Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('equipo') }}">Equipos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('puntaje') }}">Puntajes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('pregunta') }}">Preguntas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('respuesta') }}">Respuesta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('juego') }}">Juego</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('informe') }}">Informes</a></li>
                         <!--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Iglesias</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
@@ -47,6 +51,7 @@
                             </div>
                         </li>-->
                     </ul>
+                    @endguest
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
