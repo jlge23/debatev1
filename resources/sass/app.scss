@@ -1,0 +1,94 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+$spacing: 8px;
+$module: 48px;
+:root {
+  --progressW: 50%;
+}
+* {
+  box-sizing: border-box;
+}
+.sliderBar {
+  display: block;
+  width: 100%;
+  position: relative;
+  padding: 0 $spacing;
+}
+@mixin track() {
+  height: 2px;
+  padding: 0;
+  cursor: pointer;
+  background: #ccc;
+}
+@mixin thumb() { 
+  box-sizing: border-box;/*FF*/
+  -webkit-appearance: none;
+  width: $module/2;
+  height: $module/2;
+  margin-top: -$spacing;
+  border: $spacing/2 solid #eee;
+  border-radius: 50%;
+  background: #999;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .5)
+}
+@mixin active() {
+  width: $module*0.75;
+  height: $module*0.75;
+  margin-top: -$spacing*1.5;
+  background: #99F;
+}
+@mixin progress() {
+  background: #99F;
+  height: 2px;
+}
+
+[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  border: none;
+  outline: none;
+  
+  &::-webkit-slider-runnable-track { @include track }
+  &::-moz-range-track { @include track }
+  &::-ms-track { @include track }
+
+  &::-webkit-slider-thumb { @include thumb }
+  &::-moz-range-thumb { @include thumb }
+  &::-ms-thumb { @include thumb }
+
+  &:active::-webkit-slider-thumb { @include active }
+  &:active::-moz-range-thumb { @include active }
+  &:active::-ms-thumb { @include active }
+  
+  &::-moz-range-progress { @include progress }
+  &::-ms-fill-upper { @include progress }
+}
+[type=range]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #99F 0%, #99F var(--progressW), #ccc var(--progressW), #ccc 100%);
+}
+input[type=range] ~ datalist {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: $spacing;
+  width: calc(100% - #{$spacing}*2);
+  margin: $spacing*3 0;
+  padding: 0;
+}
+input[type=range] ~ datalist option {
+    display: block;
+    width: cal($module/2);
+    background: 0 0;
+    padding: 0;
+    text-align: center;
+}
+input[type=range] ~ datalist option:after{
+  content: attr(value); 
+}
