@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index()
     {
         $iglesias = Iglesia::select(\DB::raw('COUNT(*) AS iglesia'))->get();
-        $eventos = Evento::select(\DB::raw('COUNT(*) AS evento'))->get();
+        $eventos = Evento::select(\DB::raw('COUNT(*) AS evento'),'status')->groupBy('status')->get();
         $equipos = Equipo::select(\DB::raw('COUNT(*) AS equipo'))->get();
         $puntajes = Puntaje::select(\DB::raw('COUNT(*) AS puntaje'))->get();
         $preguntas = Pregunta::select(\DB::raw('COUNT(*) AS pregunta'))->get();

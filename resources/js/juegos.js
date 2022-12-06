@@ -10,14 +10,35 @@ import 'sweetalert2/src/sweetalert2.scss'
 
 $(document).ready(function(){
     if($("div#inicio").length > 0){
-        const AudioInicio = new Audio("http://"+window.location.host+"/build/media/inicio.mp3");
+        const AudioInicio = new Audio("http://"+window.location.host+"/storage/media/inicio.mp3");
         AudioInicio.loop = false;
         AudioInicio.controls = true;
         AudioInicio.play();
     }
+
+    //resetear juego
+    $("button#resetear").on("click",function(){
+        Swal.fire({
+            title: "¿Esta seguro que desea reinicar el juego?",
+            text: "Esto reiniciara las estadisticas y podra comenzar a jugar desde cero, todas las preguntas estaran disponibles",
+            icon: "question",
+            allowOutsideClick : false,
+            allowEscapeKey : false,
+            allowEnterKey : false,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "¡Cancelar!",
+            confirmButtonText: "¡Si, deseo reiniciar el Juego!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "juego/reset";
+            }
+        })
+    });
     
     $('input#comodines').on('change',function(){
-        const AudioComodin = new Audio("http://"+window.location.host+"/build/media/comodines.mp3");
+        const AudioComodin = new Audio("http://"+window.location.host+"/storage/media/comodines.mp3");
         AudioComodin.loop = false;
         AudioComodin.controls = true;
         var value = $(this).val();
@@ -194,7 +215,7 @@ $(document).ready(function(){
 
     //audio de pregunta
     if($("body#P").length > 0 ){
-        const AudioPregunta = new Audio("http://"+window.location.host+"/build/media/pregunta.mp3");
+        const AudioPregunta = new Audio("http://"+window.location.host+"/storage/media/pregunta.mp3");
         AudioPregunta.defaultMuted = true;
         AudioPregunta.loop = false;
         AudioPregunta.controls = true;

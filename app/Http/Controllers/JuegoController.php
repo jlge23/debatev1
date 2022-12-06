@@ -106,10 +106,6 @@ class JuegoController extends Controller
         return $data;
     }
 
-    public function info(){
-        return view('juego.info');
-    }
-
     public function store(StoreJuegoRequest $request)
     {
         Pregunta::create($request->post());
@@ -182,6 +178,13 @@ class JuegoController extends Controller
                 return redirect(route('juego.index'));
             break;
         }
+    }
+
+    public function reset() //reiniciar juego
+    {
+        Juego::truncate();
+        DB::table('preguntas')->update(['status' => 1]);
+        return redirect()->route('juego.index');
     }
 
     public function destroy($id)

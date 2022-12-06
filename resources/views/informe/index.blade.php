@@ -10,9 +10,9 @@
         @else
             <div class="container-fluid border">
                 <div class="row border">
-                    <div class="col-sm-4">   
+                    <div class="col">   
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col">
                                 <figure class="highcharts-figure">
                                     <div id="container4"></div>
                                     <p class="highcharts-description">
@@ -22,7 +22,7 @@
                             </div>
                         </div>  
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col">
                                 <figure class="highcharts-figure">
                                     <div id="container2"></div>
                                     <p class="highcharts-description">
@@ -32,9 +32,9 @@
                             </div>    
                         </div>                   
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col">
                                 <figure class="highcharts-figure">
                                     <div id="container1"></div>
                                     <p class="highcharts-description">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col">
                                 <figure class="highcharts-figure">
                                     <div id="container3"></div>
                                     <p class="highcharts-description">

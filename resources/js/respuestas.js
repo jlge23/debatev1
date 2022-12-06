@@ -57,8 +57,8 @@ $(document).ready(function(){
                         return "<label class='text text-success'><strong>Activo</strong></label>";
                     break;
                 }
-            }},
-            {"data":"defaultContent"}
+            }}
+            //,{"data":"defaultContent"}
         ]
     });
     //Agregar respuesta

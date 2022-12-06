@@ -11,7 +11,7 @@
             @isset($preguntas)
                 @if($preguntas == 0)
                     <div class="container">
-                        <h1 class="alert alert-warning text text-dark">Se han agotado las preguntas. Puede registrar mas aqui: <a href='pregunta'>Modulo de preguntas</a> o, <a href='juego/info'>Ver resultados del Juego</a>
+                        <h1 class="alert alert-warning text text-dark">Se han agotado las preguntas. Puede registrar mas aqui: <a href='pregunta'>Modulo de preguntas</a> o, <a href='informe'>Ver resultados del Juego</a>
                     </div>
                 @else
                     @if(isset($equipo))
@@ -26,7 +26,7 @@
                             </div>
                             <div class="row border">
                                 @if(count($actual) > 0)
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <ul class="list-group list-group-horizontal-sm">
                                         @foreach($actual as $act)
                                             <li class="list-group-item">
@@ -36,7 +36,7 @@
                                         </ul>
                                     </div>
                                 @else
-                                    <div class="col-md-10">
+                                    <div class="col-md-8">
                                         <label class="text text-white bg-dark">Esperando que inicie el juego</label>
                                     </div>
                                 @endif
@@ -47,13 +47,18 @@
                                             <label class="form-check-label" for="comodines">Comodines</label></div>
                                     </h4>
                                 </div>
+                                <div class="col-md-2">
+                                    <h4>
+                                        <button class="btn btn-warning" type="button" id="resetear" name="resetear">Reiniciar juego</button>
+                                    </h4>
+                                </div>
                             </div>
                             <form action="" method="POST" class="form-control">
                                 @isset($equipo)
                                     <input type="hidden" name="equipo" id="equipo" value="{{$equipo->id}}" readonly>
                                 @endisset                            
                                 <div class="container-fluid" id="juego">
-                                    <table id="DT_juego" class="table table-bordered table-striped">
+                                    <table id="DT_juego" class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <th>Pregunta</th>

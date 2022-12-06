@@ -18,7 +18,7 @@
                     <th>Respuesta</th>
                     <th>Validez</th>
                     <th>Estatus</th>
-                    <th>Acciones</th>
+                    {{-- <th>Acciones</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -31,14 +31,14 @@
                     <td>{{$respuesta->validez}}</label></td>
                     <td>{{$respuesta->status}}</td>
                    
-                    <td>
+                    {{-- <td>
                         <a href="{{route('respuesta.edit',$respuesta->pregunta_id)}}" class="btn btn-sm btn-secondary">Editar</a>
                         <form action="{{route('respuesta.destroy',$respuesta->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-warning">Eliminar</button>&nbsp;
                         </form>
-                    </td>
+                    </td> --}}
                 </tr>
                 @endforeach
             </tbody>
@@ -50,7 +50,7 @@
                     <th>Respuesta</th>
                     <th>Validez</th>
                     <th>Estatus</th>
-                    <th>Acciones</th>
+                    {{-- <th>Acciones</th> --}}
                 </tr>
             </tfoot>
         </table>

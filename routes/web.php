@@ -73,7 +73,7 @@ Route::put('respuesta',[RespuestaController::class,'update'])->name('respuesta.u
 Route::delete('respuesta/{id}',[RespuestaController::class,'destroy'])->name('respuesta.destroy');
 
 Route::get('juego',[JuegoController::class,'index'])->name('juego.index');
-Route::get('juego/info',[JuegoController::class,'info'])->name('juego.info');
+Route::get('juego/reset',[JuegoController::class,'reset'])->name('juego.reset');
 Route::get('juego/preguntas',[JuegoController::class,'findPreguntas'])->name('juego.findPreguntas');
 Route::get('juego/equipos',[JuegoController::class,'findEquipos'])->name('juego.findEquipos');
 Route::post('juego',[JuegoController::class,'store'])->name('juego.store');

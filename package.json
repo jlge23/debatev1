@@ -17,6 +17,7 @@
         "webpack-cli": "^4.10.0"
     },
     "dependencies": {
+        "bootstrap-select": "^1.13.18",
         "datatables.net": "^1.13.1",
         "datatables.net-bs5": "^1.13.1",
         "datatables.net-dt": "^1.13.1",

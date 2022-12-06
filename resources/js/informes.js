@@ -12,4 +12,32 @@ const modal = new Modal(document.getElementById('exampleModal')); */
 
 $(document).ready(function(){
    //modal.show();
+   //Mensaje de carga de graficos
+   let timerInterval
+   Swal.fire({
+      title: '¡Cargando Graficos!',
+      html: 'Disponibles en <b></b> segundos.',
+      allowOutsideClick : false,
+      allowEscapeKey : false,
+      allowEnterKey : false,
+      showCloseButton: false,
+      showConfirmButton: false,
+      timer: 10000,
+      timerProgressBar: true,
+      didOpen: () => {
+         Swal.showLoading()
+         const b = Swal.getHtmlContainer().querySelector('b')
+         timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+         }, 100)
+      },
+      willClose: () => {
+         clearInterval(timerInterval)
+      }
+      }).then((result) => {
+         /* Read more about handling dismissals below */
+         if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+         }
+   });
 });
