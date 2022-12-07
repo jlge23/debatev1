@@ -1,15 +1,70 @@
 import './app';
 import Highcharts from "highcharts"; 
 import Exporting from 'highcharts/modules/exporting';
+import ExportData from 'highcharts/modules/export-data';
 import Accessibility from 'highcharts/modules/accessibility';
 // Initialize accessibility module. (CommonJS only)
 Accessibility(Highcharts);
 // Initialize exporting module. (CommonJS only)
 Exporting(Highcharts);
+// Initialize export-data module. (CommonJS only)
+ExportData(Highcharts)
 window.Highcharts = Highcharts;
 
 $(document).ready(function(){
+    graficos();
     function graficos(){
+        //Grafico0
+        $.getJSON("informe/grafico/0",function(data){
+            if(data != ""){
+                Highcharts.chart('container0', {
+
+                    chart: {
+                        type: 'column',
+                        styledMode: false
+                    },
+                
+                    title: {
+                        text: 'Estado del juego, Aciertos y Desaciertos',
+                        align: 'left'
+                    },
+                
+                    subtitle: {
+                        text: 'Source',
+                        align: 'left'
+                    },
+                
+                    xAxis: {
+                        categories: data['categories'] //Equipos
+                    },
+                
+                    yAxis: [{ // Primary axis
+                        className: 'highcharts-color-0',
+                        title: {
+                            text: 'Aciertos'
+                        }
+                    }, { // Secondary axis
+                        className: 'highcharts-color-1',
+                        opposite: true,
+                        title: {
+                            text: 'Desaciertos'
+                        }
+                    }],
+                
+                    plotOptions: {
+                        column: {
+                            borderRadius: 5
+                        }
+                    },
+                
+                    series: data['series']
+                
+                });
+            }else{
+                $("div#container0").addClass('alert alert-warning').html('Nada que mostrar');
+            }
+        });
+        //Grafico1
         $.getJSON("informe/grafico/1",function(data){
             if(data != ""){
                 Highcharts.chart('container1', {
@@ -34,7 +89,7 @@ $(document).ready(function(){
                     },
                     yAxis: {
                         title: {
-                            text: 'Total porcentual del puntaje'
+                            text: 'Sumatoria del puntaje alcanzado entre ambos equipos'
                         }
                     },
                     legend: {
@@ -52,7 +107,7 @@ $(document).ready(function(){
                 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
                     },
                 
                     series: [
@@ -117,10 +172,10 @@ $(document).ready(function(){
                         type: 'spline'
                     },
                     title: {
-                        text: 'Snow depth at Vikjafjellet, Norway'
+                        text: 'Tiempos de respuesta en segundos'
                     },
                     subtitle: {
-                        text: 'Irregular time data in Highcharts JS'
+                        text: ''
                     },
                     xAxis: {
                         type: 'linear',
@@ -187,14 +242,18 @@ $(document).ready(function(){
                     },
                     plotOptions: {
                         pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
                             dataLabels: {
                                 enabled: true,
                                 distance: -50,
                                 style: {
                                     fontWeight: 'bold',
                                     color: 'white'
-                                }
+                                },
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                             },
+                            showInLegend: true,
                             startAngle: -90,
                             endAngle: 90,
                             center: ['50%', '75%'],

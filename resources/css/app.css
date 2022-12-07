@@ -28,6 +28,9 @@ oval {
     margin: 1em auto;
 }
 
+#container0 {
+    height: 400px;
+}
 #container1 {
     height: 400px;
 }

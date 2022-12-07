@@ -18,7 +18,7 @@
         
     </div>
     <hr>
-    <h4 class="text text-uppercase">Pregunta:&nbsp;<b>{{$pregunta->descripcion}}</b></h4>
+    <h2 class="text text-uppercase">Pregunta:&nbsp;<b>{{$pregunta->descripcion}}</b></h2>
     <hr>
     <center>
         <div class="row">
@@ -27,7 +27,6 @@
             </div>
             <div class="col-md-3">
                 <button type="button" id="start" class="btn btn-primary">Iniciar cuenta regresiva</button>
-{{--                 <button type="button" id="pausa" class="btn btn-primary" disabled>pausar</button> --}}
             </div>
             <div class="col-md-6">
                 <h1>
@@ -46,7 +45,7 @@
     </center>
     <hr>
     <div id="resp" style="display: none">
-        <h4 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$pregunta->respuestas[0]->respuesta}}</b></h4>
+        <h2 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$pregunta->respuestas[0]->respuesta}}</b></h2>
         <hr>
         <div class="row">
             <div class="col-md-12">

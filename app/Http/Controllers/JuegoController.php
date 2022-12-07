@@ -16,16 +16,18 @@ class JuegoController extends Controller
 {
     public function index()
     {
+        $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
         $actual = DB::table('juegos')
                     ->join('equipos', function ($join) {
                         $join->on('equipos.id', '=', 'juegos.equipo_id');
                     })
                     ->select('equipos.nombre AS name',\DB::raw('SUM(juegos.puntos) AS y'))
+                    ->where('juegos.evento_id','=',$evento[0]->id)
                     ->groupBy('equipos.nombre')
                     ->orderBy('equipos.id')
                     ->get();
-        $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
-        $juego = Juego::orderBy('id','desc')->first();//Devuelve el ultimo 'id' con ordenamiento decreciente
+        $puntajes = Puntaje::select('activo')->groupBy('activo')->get();
+        $juego = Juego::where('juegos.evento_id','=',$evento[0]->id)->orderBy('id','desc')->first();//Devuelve el ultimo 'id' con ordenamiento decreciente
         $equipos = Equipo::select(DB::raw('COUNT(id) as id'))->first();//devuelve la cantidad de equipos registrados
         $preguntas = Pregunta::select('id')->where('status','=',1)->orderBy('id','asc')->first();//devuelve el 'id' de la pregunta, siempre que tenga status=1, de forma ascendente
         if(!(gettype($preguntas) == 'NULL')){
@@ -33,15 +35,15 @@ class JuegoController extends Controller
             switch(true){
                 case (gettype($juego) == 'NULL')://no hay datos en la tabla juego
                     $equipo = Equipo::find(1);
-                    return view('juego.index',compact('equipo','evento','preguntas','actual'));
+                    return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
                 break;
                 case ($juego->equipo_id >= 1 and $juego->equipo_id < $equipos->id):
                     $equipo = Equipo::find(($juego->equipo_id + 1));
-                    return view('juego.index',compact('equipo','evento','preguntas','actual'));
+                    return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
                 break;
                 case ($juego->equipo_id == $equipos->id):
                     $equipo = Equipo::find(1);
-                    return view('juego.index',compact('equipo','evento','preguntas','actual'));
+                    return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
                 break;
             }
         }else{
@@ -52,15 +54,18 @@ class JuegoController extends Controller
 
     public function comodin($opt)
     {
-        $puntajes = Puntaje::all();
+        
         if(isset($opt)){
-            switch($opt){
+            $puntajes = Puntaje::all();
+            //return $puntajes[0]->activo;die();
+            switch($puntajes[0]->activo){
                 case 0 : //activar comodines;
                     foreach($puntajes as $puntaje){
                         $valor1 = $puntaje->comodin;//10
                         $valor2 = $puntaje->valor;//3
                         $puntaje->valor = $valor1;//10
                         $puntaje->comodin = $valor2;//3
+                        $puntaje->activo = 1;
                         $puntaje->save();
                         unset($puntaje);
                         
@@ -73,6 +78,7 @@ class JuegoController extends Controller
                         $valor2 = $puntaje->valor;//10
                         $puntaje->valor = $valor1;//3
                         $puntaje->comodin = $valor2;//10
+                        $puntaje->activo = 0;
                         $puntaje->save();
                         unset($puntaje);
                         

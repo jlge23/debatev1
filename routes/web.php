@@ -84,4 +84,5 @@ Route::delete('juego/{id}',[JuegoController::class,'destroy'])->name('juego.dest
 
 Route::get('informe',[InformeController::class,'index'])->name('informe.index');
 Route::get('informe/grafico/{grafico}',[InformeController::class,'graficos'])->name('informe.grafico');
+Route::get('informe/resultados',[InformeController::class,'resultados'])->name('informe.resultados');
 });

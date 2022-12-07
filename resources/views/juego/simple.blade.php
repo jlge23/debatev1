@@ -20,18 +20,18 @@
         <span class="input-group-text text text-uppercase" id="inputGroup-sizing-sm">Tiempo para responder:&nbsp;<b>{{$pregunta->tiempo}}&nbsp;segundos</b></span>
     </div>
     <hr>
-    <h4 class="text text-uppercase">Pregunta:&nbsp;<b>{{$pregunta->descripcion}}</b></h4>
+    <h2 class="text text-uppercase">Pregunta:&nbsp;<b>{{$pregunta->descripcion}}</b></h2>
     <hr>
     <div class="row">
         <div class="col-md-3">
             <center><button type="button" id="start" class="btn btn-primary">Iniciar cuenta regresiva</button></center><hr>
             @include('juego.relog')
-            <center><label>Seleccione una opcion:&nbsp;
+            <center><label>Seleccione una Opción:&nbsp;
                 <select name="opcion" id="opcion" class="form-select">
                     <option value="0">SELECCIONE</option>
                     {{$i=1;}}
                     @foreach($pregunta->respuestas as $key=>$value)
-                        <option value={{$value->id}}>Opcion {{$i++}}</option>
+                        <option value={{$value->id}}>OPCIÓN {{$i++}}</option>
                     @endforeach
                 </select>
             </label></center>
@@ -50,7 +50,7 @@
     <div id="resp" style="display: none">
         @foreach($pregunta->respuestas as $key=>$value)
             @if($value->validez == 1)
-                <h4 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$value->respuesta}}</b></h4>
+                <h2 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$value->respuesta}}</b></h2>
             @endif
         @endforeach
         

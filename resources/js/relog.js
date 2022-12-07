@@ -13,7 +13,16 @@ $(document).ready(function(){
     const AudioError= new Audio("http://"+window.location.host+"/storage/media/error.mp3");
     AudioError.loop = false;
     AudioError.controls = true;
-    
+
+    if($("form#FRM_vf").length > 0){
+        $("input[name='opcion']").attr('disabled','disabled').attr('checked', false);
+    }
+    if($("form#FRM_simple").length > 0){
+        $("select#opcion").prop('disabled','disabled');
+    }
+    if($("form#FRM_desarrollo").length > 0){
+        $("input#opcion").attr('disabled',false);
+    }    
 
     var initial = $("input#tiempo").val() * 1000;
     var count = initial;
@@ -66,6 +75,8 @@ $(document).ready(function(){
     //iniciar cuenta regresiva
     $('button#start').on('click', function() {
         AudioTime.play();
+        $("input[name='opcion']").attr('disabled',false);
+        $("select#opcion").prop("disabled",false);
         $(this).prop('disabled',true);
         $("button#pausa").prop('disabled',false);
         if($("button#stop")){$("button#stop").attr("disabled",false);}
@@ -75,7 +86,9 @@ $(document).ready(function(){
         initialMillis = Date.now();
         counter = setInterval(timer, 1);
     });
-
+    /* const AudioSuccess= new Audio("http://"+window.location.host+"/storage/media/success.mp3");
+    AudioSuccess.loop = false;
+    AudioSuccess.controls = true; */
     //Verdadero y falso
     $("input[type='radio'][name='opcion']").on('change', function() {
         clearInterval(counter);

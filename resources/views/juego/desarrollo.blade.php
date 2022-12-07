@@ -15,7 +15,7 @@
         
     </div>
     <hr>
-    <h4 class="text text-uppercase">Pregunta:&nbsp;<b>{{$pregunta->descripcion}}</b></h4>
+    <h2 class="text text-uppercase">Pregunta:&nbsp;<b>{{$pregunta->descripcion}}</b></h2>
     <hr>
     <div class="row">
         <div class="col-md-4">
@@ -44,7 +44,7 @@
                 <div>
                     <div class="collapse collapse-vertical" id="respuestacorrecta">
                         <div class="card card-body" style="width: 100%;">
-                            <h4 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$pregunta->respuestas[0]->respuesta}}</b></h4>
+                            <h2 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$pregunta->respuestas[0]->respuesta}}</b></h2>
                         </div>
                     </div>
                 </div>

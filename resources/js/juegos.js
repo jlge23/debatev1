@@ -52,7 +52,7 @@ $(document).ready(function(){
                 allowEnterKey : false,
                 showCloseButton: false,
                 showConfirmButton: false,
-                timer: 5000
+                timer: 4500
             });
         }
         $.ajax({
@@ -81,28 +81,26 @@ $(document).ready(function(){
     });
     //
     var equipo = $("input#equipo").val();
-   /*  $("table#DT_juego").DataTable().clear();
-    $("table#DT_juego").DataTable().destroy(); */
     var table = $("table#DT_juego").DataTable({
         responsive: true,
-        scrollY: '400px',
+        scrollY: '460px',
         scrollCollapse: true,
         paging: false,
         "autoWidth": true,
         fixedHeader: true,
         initComplete: function () {
-            this.api()
-            .columns([0,1,2,3,4])
-            .every(function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo($(column.footer()).empty())
-                    .on('change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-                        column.search(val ? '^' + val + '$' : '', true, false).draw();
-                    });
-
+           this.api()
+           .columns([0])
+           .every(function () {
+              var column = this;
+              var select = $('<select><option value=""></option></select>')
+                 .appendTo($(column.footer()).empty())
+                 .on('change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+  
+                    column.search(val ? '^' + val + '$' : '', true, false).draw();
+                 });
+  
                 column
                     .data()
                     .unique()
@@ -145,7 +143,7 @@ $(document).ready(function(){
             {"data":"id","width": "10%",
                 "render": function (data, type, row) {
                     return "<label class='text text-dark text-center'>"+data+"</b></label>";
-
+  
                 }
             },
             {"data":"tipo","width": "10%"},
@@ -159,7 +157,7 @@ $(document).ready(function(){
                             return "<label class='text text-danger'><strong>Inactivo</strong></label>";
                         break;
                         case 1 :
-                            return "<label class='text text-success'><strong>Activo</strong></label>";
+                            return "<label class='text text-success'><strong>Disponible</strong></label>";
                         break;
                     }
                 }

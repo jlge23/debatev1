@@ -13,7 +13,7 @@
 @enderror
 <br>
 <label>Fecha y hora: (Revisar, agregar libreria datepicker, campo tipo text)&nbsp;
-    <input type="text" name="fecha" id="fecha" class="form-control" value="{{$evento->fecha ?? old('fecha')}}" min="{{date('Y-m-d')}}">
+    <input type="date" name="fecha" id="fecha" class="form-control" value="{{$evento->fecha ?? old('fecha')}}" min="{{date('Y-m-d')}}">
 </label>
 @error('fecha')
     <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>

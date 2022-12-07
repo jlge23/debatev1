@@ -10,6 +10,68 @@
         @else
             <div class="container-fluid border">
                 <div class="row border">
+                    <div class="col-md-12">
+                        <h2 class="alert alert-primary">Tabla de resultados del Juego</h2>
+                        @if(count($actual) > 0)
+                            <div class="col-md-8">
+                                
+                                <ul class="list-group list-group-horizontal-sm">
+                                    <b>Equipos:&nbsp;&nbsp;</b>
+                                @foreach($actual as $act)
+                                    <li class="list-group-item">
+                                        {{$act->name.": [".$act->y."]"}}
+                                    </li>                       
+                                @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            <div class="col-md-8">
+                                <label class="text text-white bg-dark">Esperando que inicie el juego</label>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="row border">
+                    <div class="col-md-12">
+                        <table class="table table-bordered table-striped table-hover" id="DT_informe">
+                            <thead>
+                                <tr>
+                                    <th>Turno</th>
+                                    <th>Equipo</th>
+                                    <th>Pregunta</th>
+                                    <th>Respuesta correcta</th>
+                                    <th>Resultado</th>
+                                    <th>Puntos</th>
+                                    <th>Tiempo de respuesta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Turno</th>
+                                    <th>Equipo</th>
+                                    <th>Pregunta</th>
+                                    <th>Respuest correcta</th>
+                                    <th>Resultado</th>
+                                    <th>Puntos</th>
+                                    <th>Tiempo de respuesta</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="row border">
+                    <div class="col-md-12">
+                        <figure class="highcharts-figure">
+                            <div id="container0"></div>
+                            <p class="highcharts-description">
+                                Progreso general del Juego, Aciertos y desaciertos por equipo.
+                            </p>
+                        </figure>
+                    </div>
+                </div>
+                <div class="row border">
                     <div class="col">   
                         <div class="row">
                             <div class="col">
@@ -57,41 +119,6 @@
                 </div>
                 
             </div>
-        {{-- <div class="container-fluid" id="info">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="input-group input-group">
-                        <span class="input-group-text text text-uppercase" id="inputGroup-sizing-sm">Evento activo:&nbsp;<b>{{$evento[0]->nombre.". [".$evento[0]->descripcion."]"}}</b></span>
-                        <span class="input-group-text text text-uppercase" id="inputGroup-sizing-sm">Fecha:&nbsp;<b>{{$evento[0]->fecha}}</b>&nbsp;|&nbsp;Lugar:&nbsp;<b>{{$evento[0]->iglesia->nombre}}</b></span>
-                    </div>
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-6">
-                    <figure class="highcharts-figure">
-                        <div id="container1"></div>
-                        <p class="highcharts-description">
-                            Chart showing column comparisons with negative values.
-                            Column charts are commonly used to compare values, and remains one of
-                            the most popular and readable types of charts.
-                        </p>
-                    </figure>
-                </div>
-                <div class="col-md-6">
-                    <figure class="highcharts-figure">
-                        <div id="container2"></div>
-                        <p class="highcharts-description">
-                            Pie charts are very popular for showing a compact overview of a
-                            composition or comparison. While they can be harder to read than
-                            column charts, they remain a popular choice for small datasets.
-                        </p>
-                    </figure>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
-            </div> --}}
         @endif
     @endisset
 @endsection

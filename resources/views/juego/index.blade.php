@@ -12,6 +12,7 @@
                 @if($preguntas == 0)
                     <div class="container">
                         <h1 class="alert alert-warning text text-dark">Se han agotado las preguntas. Puede registrar mas aqui: <a href='pregunta'>Modulo de preguntas</a> o, <a href='informe'>Ver resultados del Juego</a>
+                        &nbsp;<button class="btn btn-danger" type="button" id="resetear" name="resetear">Reiniciar juego</button></h1>
                     </div>
                 @else
                     @if(isset($equipo))
@@ -43,8 +44,16 @@
                                 <div class="col-md-2">
                                     <h4>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="comodines" name="comodines" value="{{old('comodines')? old('comodines'):0}}" {{old('comodines')? 'checked':''}}>
-                                            <label class="form-check-label" for="comodines">Comodines</label></div>
+                                            @isset($puntajes)
+                                                @if($puntajes[0]->activo == 1)
+                                                    <input class="form-check-input" type="checkbox" id="comodines" name="comodines" value="1" checked>
+                                                    <label class="form-check-label" for="comodines">Comodines</label>
+                                                @else
+                                                    <input class="form-check-input" type="checkbox" id="comodines" name="comodines" value="0">
+                                                    <label class="form-check-label" for="comodines">Comodines</label>
+                                                @endif
+                                            @endisset
+                                        </div>
                                     </h4>
                                 </div>
                                 <div class="col-md-2">

@@ -100,6 +100,22 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <div class="container-fluid">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+              <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc&nbsp;|&nbsp;Soporte en TIC.&nbsp;<a href="mailto:tic.emmaus@gmail.com">Contacto</a></p>
+              <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+              </a>
+              <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="https://laravel.com" class="nav-link px-2 text-muted">Laravel</a></li>
+                <li class="nav-item"><a href="https://mariadb.org" class="nav-link px-2 text-muted">MariaDB</a></li>
+                <li class="nav-item"><a href="https://nodejs.org/es/" class="nav-link px-2 text-muted">NodeJS</a></li>
+                <li class="nav-item"><a href="https://getcomposer.org" class="nav-link px-2 text-muted">Composer</a></li>
+                <li class="nav-item"><a href="https://www.php.net/manual/es/intro-whatis.php" class="nav-link px-2 text-muted">PHP</a></li>
+                <li class="nav-item"><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" class="nav-link px-2 text-muted">javaScript</a></li>
+              </ul>
+            </footer>
+        </div>
     </div>
 </body>
 </html>
