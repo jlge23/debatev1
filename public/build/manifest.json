@@ -1,0 +1,149 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app.ed1797e6.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/iglesias.js": {
+    "file": "assets/iglesias.26979cff.js",
+    "src": "resources/js/iglesias.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/equipos.js": {
+    "file": "assets/equipos.352dfd1f.js",
+    "src": "resources/js/equipos.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/eventos.js": {
+    "file": "assets/eventos.01f6cb51.js",
+    "src": "resources/js/eventos.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/puntajes.js": {
+    "file": "assets/puntajes.e889491a.js",
+    "src": "resources/js/puntajes.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/preguntas.js": {
+    "file": "assets/preguntas.881dd776.js",
+    "src": "resources/js/preguntas.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "__commonjsHelpers.4e997714.js"
+    ],
+    "css": [
+      "assets/preguntas.f0553651.css"
+    ]
+  },
+  "resources/js/respuestas.js": {
+    "file": "assets/respuestas.795462be.js",
+    "src": "resources/js/respuestas.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/juegos.js": {
+    "file": "assets/juegos.bf18f777.js",
+    "src": "resources/js/juegos.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "_sweetalert2.6a825d83.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/relog.js": {
+    "file": "assets/relog.105ac9f2.js",
+    "src": "resources/js/relog.js",
+    "isEntry": true,
+    "imports": [
+      "_sweetalert2.6a825d83.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/graficos.js": {
+    "file": "assets/graficos.bacf36fb.js",
+    "src": "resources/js/graficos.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "resources/js/informes.js": {
+    "file": "assets/informes.020e7166.js",
+    "src": "resources/js/informes.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_jquery.validate.4f8c037b.js",
+      "_sweetalert2.6a825d83.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "__commonjsHelpers.4e997714.js": {
+    "file": "assets/_commonjsHelpers.4e997714.js"
+  },
+  "_jquery.validate.4f8c037b.js": {
+    "file": "assets/jquery.validate.4f8c037b.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "_sweetalert2.6a825d83.js": {
+    "file": "assets/sweetalert2.6a825d83.js",
+    "imports": [
+      "__commonjsHelpers.4e997714.js"
+    ],
+    "css": [
+      "assets/sweetalert2.50a54fda.css"
+    ]
+  },
+  "sweetalert2.css": {
+    "file": "assets/sweetalert2.50a54fda.css",
+    "src": "sweetalert2.css"
+  },
+  "resources/js/preguntas.css": {
+    "file": "assets/preguntas.f0553651.css",
+    "src": "resources/js/preguntas.css"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.893c85d1.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app.39c7e27e.css",
+    "src": "resources/sass/app.scss",
+    "isEntry": true
+  }
+}
