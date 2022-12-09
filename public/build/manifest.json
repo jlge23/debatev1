@@ -100,7 +100,7 @@
     ]
   },
   "resources/js/informes.js": {
-    "file": "assets/informes.020e7166.js",
+    "file": "assets/informes.7172dda1.js",
     "src": "resources/js/informes.js",
     "isEntry": true,
     "imports": [
@@ -136,14 +136,14 @@
     "file": "assets/preguntas.f0553651.css",
     "src": "resources/js/preguntas.css"
   },
-  "resources/css/app.css": {
-    "file": "assets/app.893c85d1.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
-  },
   "resources/sass/app.scss": {
     "file": "assets/app.39c7e27e.css",
     "src": "resources/sass/app.scss",
+    "isEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.893c85d1.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   }
 }
