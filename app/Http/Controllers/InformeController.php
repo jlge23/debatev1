@@ -14,16 +14,20 @@ class InformeController extends Controller
     public function index()
     {
         $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
-        $actual = DB::table('juegos')
-                    ->join('equipos', function ($join) {
-                        $join->on('equipos.id', '=', 'juegos.equipo_id');
-                    })
-                    ->select('equipos.nombre AS name',\DB::raw('SUM(juegos.puntos) AS y'))
-                    ->where('juegos.evento_id','=',$evento[0]->id)
-                    ->groupBy('equipos.nombre')
-                    ->orderBy('equipos.id')
-                    ->get();
-        return view('informe.index',compact('evento','actual'));
+        if(count($evento) > 0){
+            $actual = DB::table('juegos')
+                        ->join('equipos', function ($join) {
+                            $join->on('equipos.id', '=', 'juegos.equipo_id');
+                        })
+                        ->select('equipos.nombre AS name',\DB::raw('SUM(juegos.puntos) AS y'))
+                        ->where('juegos.evento_id','=',$evento[0]->id)
+                        ->groupBy('equipos.nombre')
+                        ->orderBy('equipos.id')
+                        ->get();
+            return view('informe.index',compact('evento','actual'));
+        }else{
+            return view('informe.index',compact('evento'));
+        }
     }
 
     public function resultados(){
