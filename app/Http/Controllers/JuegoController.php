@@ -17,38 +17,42 @@ class JuegoController extends Controller
     public function index()
     {
         $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
-        $actual = DB::table('juegos')
-                    ->join('equipos', function ($join) {
-                        $join->on('equipos.id', '=', 'juegos.equipo_id');
-                    })
-                    ->select('equipos.nombre AS name',\DB::raw('SUM(juegos.puntos) AS y'))
-                    ->where('juegos.evento_id','=',$evento[0]->id)
-                    ->groupBy('equipos.nombre')
-                    ->orderBy('equipos.id')
-                    ->get();
-        $puntajes = Puntaje::select('activo')->groupBy('activo')->get();
-        $juego = Juego::where('juegos.evento_id','=',$evento[0]->id)->orderBy('id','desc')->first();//Devuelve el ultimo 'id' con ordenamiento decreciente
-        $equipos = Equipo::select(DB::raw('COUNT(id) as id'))->first();//devuelve la cantidad de equipos registrados
-        $preguntas = Pregunta::select('id')->where('status','=',1)->orderBy('id','asc')->first();//devuelve el 'id' de la pregunta, siempre que tenga status=1, de forma ascendente
-        if(!(gettype($preguntas) == 'NULL')){
-            $preguntas = 1;
-            switch(true){
-                case (gettype($juego) == 'NULL')://no hay datos en la tabla juego
-                    $equipo = Equipo::find(1);
-                    return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
-                break;
-                case ($juego->equipo_id >= 1 and $juego->equipo_id < $equipos->id):
-                    $equipo = Equipo::find(($juego->equipo_id + 1));
-                    return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
-                break;
-                case ($juego->equipo_id == $equipos->id):
-                    $equipo = Equipo::find(1);
-                    return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
-                break;
+        if(count($evento) > 0){
+            $actual = DB::table('juegos')
+                        ->join('equipos', function ($join) {
+                            $join->on('equipos.id', '=', 'juegos.equipo_id');
+                        })
+                        ->select('equipos.nombre AS name',\DB::raw('SUM(juegos.puntos) AS y'))
+                        ->where('juegos.evento_id','=',$evento[0]->id)
+                        ->groupBy('equipos.nombre')
+                        ->orderBy('equipos.id')
+                        ->get();
+            $puntajes = Puntaje::select('activo')->groupBy('activo')->get();
+            $juego = Juego::where('juegos.evento_id','=',$evento[0]->id)->orderBy('id','desc')->first();//Devuelve el ultimo 'id' con ordenamiento decreciente
+            $equipos = Equipo::select(DB::raw('COUNT(id) as id'))->first();//devuelve la cantidad de equipos registrados
+            $preguntas = Pregunta::select('id')->where('status','=',1)->orderBy('id','asc')->first();//devuelve el 'id' de la pregunta, siempre que tenga status=1, de forma ascendente
+            if(!(gettype($preguntas) == 'NULL')){
+                $preguntas = 1;
+                switch(true){
+                    case (gettype($juego) == 'NULL')://no hay datos en la tabla juego
+                        $equipo = Equipo::find(1);
+                        return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
+                    break;
+                    case ($juego->equipo_id >= 1 and $juego->equipo_id < $equipos->id):
+                        $equipo = Equipo::find(($juego->equipo_id + 1));
+                        return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
+                    break;
+                    case ($juego->equipo_id == $equipos->id):
+                        $equipo = Equipo::find(1);
+                        return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
+                    break;
+                }
+            }else{
+                $preguntas = 0;
+                return view('juego.index',compact('preguntas','evento'));
             }
         }else{
-            $preguntas = 0;
-            return view('juego.index',compact('preguntas','evento'));
+            return view('juego.index',compact('evento'));
         }
     }
 

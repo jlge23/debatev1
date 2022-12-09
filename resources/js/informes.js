@@ -14,12 +14,12 @@ $(document).ready(function(){
    //modal.show();
    //Datatables resultados
    var table = $("table#DT_informe").DataTable({
-      responsive: true,
-      scrollX: false,
+      //responsive: true,
+      //scrollX: false,
       scrollY: '450px',
       scrollCollapse: true,
-      paging: false,
-      "autoWidth": false,
+      //paging: false,
+      autoWidth: false,
       fixedHeader: true,
       initComplete: function () {
          this.api()
