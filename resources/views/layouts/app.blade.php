@@ -33,7 +33,7 @@
                         <ul class="nav navbar-nav">
                         </ul>
                     @else
-                        @if(Auth::id() == 1)
+                        @if(Auth::user()->name == 'Admin')
                             <ul class="nav navbar-nav">
                                 <li class="nav-item"><a class="nav-link active" href="{{ url('/home') }}">Inicio</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('iglesia') }}">Iglesias</a></li>
@@ -44,16 +44,18 @@
                                 <li class="nav-item"><a class="nav-link" href="{{ url('respuesta') }}">Respuesta</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('juego') }}">Juego</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('informe') }}">Informes</a></li>
-                                <!--<li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Iglesias</a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                                        <a href="{{route('iglesia.index')}}" class="dropdown-item">Listado</a>
-                                        <a href="{{route('iglesia.create')}}" class="dropdown-item">Nueva Iglesia</a>
-                                    </div>
-                                </li>-->
                             </ul>
-                        @else
+                        @endif
+                        @if(Auth::user()->name == 'Estadistica')
                             <ul class="nav navbar-nav">
+                                <li class="nav-item"><a class="nav-link active" href="{{ url('/home') }}">Inicio</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('informe') }}">Informes</a></li>
+                            </ul>
+                        @endif
+                        @if(Auth::user()->name == 'Juego')
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item"><a class="nav-link active" href="{{ url('/home') }}">Inicio</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('juego') }}">Juego</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('informe') }}">Informes</a></li>
                             </ul>
                         @endif
