@@ -10,6 +10,7 @@ use App\Models\Evento;
 use App\Models\Pregunta;
 use App\Models\Puntaje;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 use SebastianBergmann\LinesOfCode\NegativeValueException;
 
 class JuegoController extends Controller
@@ -94,23 +95,37 @@ class JuegoController extends Controller
            
         //return view('juego.index', compact('eventos'));
     }
-    public function findEquipos(){
+/*     public function findEquipos(){
         $EquipoIglesia = Equipo::with('iglesia')->get(); 
         return $EquipoIglesia;
-    }
+    } */
+    /*
+    SELECT puntajes.nombre,puntajes.valor,puntajes.comodin, COUNT('preguntas.id') AS preguntas FROM
+puntajes INNER JOIN 
+	preguntas ON preguntas.puntaje_id = puntajes.id
+WHERE preguntas.status = 1
+GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
+    */
 
     public function findPreguntas(){
         $data = array();
-        $preguntas = Pregunta::all();
+        //$preguntas = Pregunta::all();
+        $preguntas = DB::table('puntajes')
+            ->join('preguntas', function ($join) {
+                $join->on('puntajes.id', '=', 'preguntas.puntaje_id');
+            })
+            ->select('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin',\DB::raw('COUNT(preguntas.id) AS cantidad'))
+            ->where('preguntas.status','=',1)
+            ->groupBy('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin')
+            ->orderBy('puntajes.nombre','DESC')
+            ->get();
         foreach($preguntas as $pregunta){
             $data['data'][] = array(
                 'id' => $pregunta->id,
-                'descripcion' => $pregunta->descripcion,
-                'tipo' => $pregunta->puntaje->nombre,
-                'tiempo' => $pregunta->tiempo,
-                'puntaje' => $pregunta->puntaje->valor,
-                'comodin' => $pregunta->puntaje->comodin,
-                'status' => $pregunta->status
+                'nombre' => $pregunta->nombre,
+                'valor' => $pregunta->valor,
+                'comodin' => $pregunta->comodin,
+                'cantidad' => $pregunta->cantidad
             );
         }
         return $data;
@@ -122,11 +137,11 @@ class JuegoController extends Controller
         return redirect()->route('pregunta.index');
     }
 
-    public function edit(Pregunta $pregunta, $idpregunta, $equipo)
+    public function edit(Pregunta $pregunta, $puntaje, $equipo)
     {
         $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
         $equipo = Equipo::with('iglesia')->find($equipo);
-        $pregunta = $pregunta->with('puntaje')->with('respuestas')->find($idpregunta);
+        $pregunta = $pregunta->with('puntaje')->with('respuestas')->where('preguntas.status','=',1)->where('puntaje_id','=',$puntaje)->inRandomOrder()->first();
         return view('juego.edit', compact('pregunta','equipo','evento'));
     }
 

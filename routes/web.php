@@ -78,7 +78,7 @@ Route::get('juego/preguntas',[JuegoController::class,'findPreguntas'])->name('ju
 Route::get('juego/equipos',[JuegoController::class,'findEquipos'])->name('juego.findEquipos');
 Route::post('juego',[JuegoController::class,'store'])->name('juego.store');
 Route::get('juego/{opt}/comodin',[JuegoController::class,'comodin'])->name('juego.comodin');
-Route::get('juego/{id}/{e}',[JuegoController::class, 'edit'])->name('juego.edit');
+Route::get('juego/{p}/{e}',[JuegoController::class, 'edit'])->name('juego.edit');
 Route::put('juego',[JuegoController::class,'update'])->name('juego.update');
 Route::delete('juego/{id}',[JuegoController::class,'destroy'])->name('juego.destroy');
 

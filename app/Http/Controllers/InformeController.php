@@ -13,21 +13,8 @@ class InformeController extends Controller
 {
     public function index()
     {
-        $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
-        if(count($evento) > 0){
-            $actual = DB::table('juegos')
-                        ->join('equipos', function ($join) {
-                            $join->on('equipos.id', '=', 'juegos.equipo_id');
-                        })
-                        ->select('equipos.nombre AS name',\DB::raw('SUM(juegos.puntos) AS y'))
-                        ->where('juegos.evento_id','=',$evento[0]->id)
-                        ->groupBy('equipos.nombre')
-                        ->orderBy('equipos.id')
-                        ->get();
-            return view('informe.index',compact('evento','actual'));
-        }else{
-            return view('informe.index',compact('evento'));
-        }
+        $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo 
+        return view('informe.index',compact('evento'));
     }
 
     public function resultados(){
@@ -39,7 +26,9 @@ class InformeController extends Controller
                 $join->on('respuestas.id', '=', 'juegos.respuesta_id');})
             ->join('preguntas', function ($join) {
                 $join->on('preguntas.id', '=', 'respuestas.pregunta_id');})
-            ->select('juegos.id','equipos.nombre','preguntas.descripcion','respuestas.respuesta','juegos.acierto','juegos.puntos','juegos.tiempo')
+            ->join('puntajes', function ($join) {
+                $join->on('puntajes.id', '=', 'preguntas.puntaje_id');})
+            ->select('juegos.id','equipos.nombre','puntajes.nombre AS tipo','preguntas.descripcion','respuestas.respuesta','juegos.acierto','juegos.puntos','juegos.tiempo')
             ->where('juegos.evento_id','=',$evento[0]->id)
             ->orderBy('juegos.id','asc')->get();
         //[{"id":1,"nombre":"Josue y Caleb","descripcion":"Existe la 3era carta de Pablo a Timoteo?","respuesta":"no existe la 3era carta a Timoteo","acierto":1,"puntos":10,"tiempo":2.59}]
@@ -47,6 +36,7 @@ class InformeController extends Controller
             $data['data'][] = array(
                 'id' => $juego->id,
                 'nombre' => $juego->nombre,
+                'tipo' => $juego->tipo,
                 'descripcion' => $juego->descripcion,
                 'respuesta' => $juego->respuesta,
                 'acierto' => $juego->acierto,

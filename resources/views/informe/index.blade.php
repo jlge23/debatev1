@@ -9,35 +9,14 @@
             </div>
         @else
             <div class="container-fluid border">
-                <div class="row border">
                     <div class="col-md-12">
-                        <h2 class="alert alert-primary">Tabla de resultados del Juego</h2>
-                        @if(count($actual) > 0)
-                            <div class="col-md-8">
-                                
-                                <ul class="list-group list-group-horizontal-sm">
-                                    <b>Equipos:&nbsp;&nbsp;</b>
-                                @foreach($actual as $act)
-                                    <li class="list-group-item">
-                                        {{$act->name.": [".$act->y."]"}}
-                                    </li>                       
-                                @endforeach
-                                </ul>
-                            </div>
-                        @else
-                            <div class="col-md-8">
-                                <label class="text text-white bg-dark">Esperando que inicie el juego</label>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="row border">
-                    <div class="col-md-12">
+                        <h1 class="alert alert-primary">Resultados del juego</h1>
                         <table class="table table-bordered table-striped table-hover" id="DT_informe">
                             <thead>
                                 <tr>
                                     <th>Turno</th>
                                     <th>Equipo</th>
+                                    <th>Tipo de pregunta</th>
                                     <th>Pregunta</th>
                                     <th>Respuesta correcta</th>
                                     <th>Resultado</th>
@@ -51,6 +30,7 @@
                                 <tr>
                                     <th>Turno</th>
                                     <th>Equipo</th>
+                                    <th>Tipo de pregunta</th>
                                     <th>Pregunta</th>
                                     <th>Respuest correcta</th>
                                     <th>Resultado</th>

@@ -70,12 +70,11 @@
                                     <table id="DT_juego" class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Pregunta</th>
-                                                <th>Tipo</th>
-                                                <th>Tiempo</th>
-                                                <th>Puntaje</th>
+                                                <th>N°</th>
+                                                <th>Tipo de pregunta</th>
+                                                <th>Valor</th>
                                                 <th>Comodin</th>
-                                                <th>Estatus</th>
+                                                <th>Disponibles</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -83,12 +82,11 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Pregunta</th>
-                                                <th>Tipo</th>
-                                                <th>Tiempo</th>
-                                                <th>Puntaje</th>
+                                                <th>N°</th>
+                                                <th>Tipo de pregunta</th>
+                                                <th>Valor</th>
                                                 <th>Comodin</th>
-                                                <th>Estatus</th>
+                                                <th>Disponibles</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </tfoot>

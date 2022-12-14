@@ -140,38 +140,19 @@ $(document).ready(function(){
             "url":"juego/preguntas"
         },
         "columns" : [
-            {"data":"id","width": "10%",
+            {"data":"id"},
+            {"data":"nombre",
                 "render": function (data, type, row) {
                     return "<label class='text text-dark text-center'>"+data+"</b></label>";
   
                 }
             },
-            {"data":"tipo","width": "10%"},
-            {"data":"tiempo","width": "10%"},
-            {"data":"puntaje","width": "10%"},
-            {"data":"comodin","width": "10%"},
-            {"data":"status","width": "10%",
+            {"data":"valor"},
+            {"data":"comodin"},
+            {"data":"cantidad"},
+            {"data":"id,",
                 "render": function (data, type, row) {
-                    switch(data){
-                        case 0 :
-                            return "<label class='text text-danger'><strong>Inactivo</strong></label>";
-                        break;
-                        case 1 :
-                            return "<label class='text text-success'><strong>Disponible</strong></label>";
-                        break;
-                    }
-                }
-            },
-            {"data":"status","width": "10%",
-                "render": function(data, type, row, full){
-                    switch(data){
-                        case 0:
-                            return "<label class='text text-white bg-dark'>Pregunta respondida</label>";
-                        break;
-                        case 1:
-                            return "<a class='btn btn-primary' href='juego/"+row.id+"/"+equipo+"'>Seleccionar pregunta</a>";
-                        break;
-                    }
+                    return "<a class='btn btn-primary' href='juego/"+row.id+"/"+equipo+"'>SELECCIONAR</a>";
                 }
             }
         ]

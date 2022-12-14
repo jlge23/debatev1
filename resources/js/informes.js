@@ -46,17 +46,19 @@ $(document).ready(function(){
          "type":"get",
          "url":"informe/resultados"
       },
+      "order": [[0, 'desc']],
       "columns" : [
-         {"data":"id","width": "10%",
+         {"data":"id",
             "render": function (data, type, row) {
                   return "<label class='text text-dark text-center'>"+data+"</b></label>";
 
             }
          },
-         {"data":"nombre","width": "10%"},
-         {"data":"descripcion","width": "10%"},
-         {"data":"respuesta","width": "10%"},
-         {"data":"acierto","width": "10%",
+         {"data":"nombre"},
+         {"data":"tipo"},
+         {"data":"descripcion"},
+         {"data":"respuesta"},
+         {"data":"acierto",
             "render": function (data, type, row) {
                   switch(data){
                      case 0 :
