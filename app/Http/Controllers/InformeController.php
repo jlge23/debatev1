@@ -31,7 +31,6 @@ class InformeController extends Controller
             ->select('juegos.id','equipos.nombre','puntajes.nombre AS tipo','preguntas.descripcion','respuestas.respuesta','juegos.acierto','juegos.puntos','juegos.tiempo')
             ->where('juegos.evento_id','=',$evento[0]->id)
             ->orderBy('juegos.id','asc')->get();
-        //[{"id":1,"nombre":"Josue y Caleb","descripcion":"Existe la 3era carta de Pablo a Timoteo?","respuesta":"no existe la 3era carta a Timoteo","acierto":1,"puntos":10,"tiempo":2.59}]
         foreach($juegos as $juego){
             $data['data'][] = array(
                 'id' => $juego->id,

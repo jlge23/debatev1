@@ -5,8 +5,8 @@ import "datatables.net-dt/js/dataTables.dataTables";
 //jquery Validate
 //import "jquery-validation/dist/additional-methods";
 import "jquery-validation/dist/jquery.validate";
-import selectpicker from "bootstrap-select/dist/js/bootstrap-select";
-import "bootstrap-select/sass/bootstrap-select.scss";
+//import selectpicker from "bootstrap-select/dist/js/bootstrap-select";
+//import "bootstrap-select/sass/bootstrap-select.scss";
 $(document).ready(function(){
     //Datatables
     $("table#pregunta").DataTable({

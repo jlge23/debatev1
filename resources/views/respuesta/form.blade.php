@@ -1,5 +1,5 @@
     <label>Seleccione la Pregunta:&nbsp;
-        <select name="sel_pregunta" id="sel_pregunta" class="form-select selectpicker">
+        <select name="sel_pregunta" id="sel_pregunta" class="form-select">
             <option value="">SELLECCIONE</option>
             @if(isset($preguntas) and count($preguntas) > 0)
                 @foreach ($preguntas as $pregunta)
