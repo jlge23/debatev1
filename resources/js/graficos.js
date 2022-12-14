@@ -61,7 +61,7 @@ $(document).ready(function(){
                 
                 });
             }else{
-                $("div#container0").addClass('alert alert-warning').html('Nada que mostrar');
+                $("div#container0").addClass('alert alert-warning').html('Esperando que inicie el juego');
             }
         });
         //Grafico1
@@ -119,7 +119,7 @@ $(document).ready(function(){
                     ]
                 });
             }else{
-                $("div#container1").addClass('alert alert-warning').html('Nada que mostrar');
+                $("div#container1").addClass('alert alert-warning').html('Esperando que inicie el juego');
             }
         });
         //Grafico2
@@ -161,7 +161,7 @@ $(document).ready(function(){
                     }]
                 });
             }else{
-                $("div#container2").addClass('alert alert-warning').html('Nada que mostrar');
+                $("div#container2").addClass('alert alert-warning').html('Esperando que inicie el juego');
             }
         });
         //grafico3
@@ -214,7 +214,7 @@ $(document).ready(function(){
                     series: data
                 });
             }else{
-                $("div#container3").addClass('alert alert-warning').html('Nada que mostrar');
+                $("div#container3").addClass('alert alert-warning').html('Esperando que inicie el juego');
             }
         });
         //grafico4
@@ -268,7 +268,7 @@ $(document).ready(function(){
                     }]
                 });
             }else{
-                $("div#container4").addClass('alert alert-warning').html('Nada que mostrar');
+                $("div#container4").addClass('alert alert-warning').html('Esperando que inicie el juego');
             }
         });
         return true;
