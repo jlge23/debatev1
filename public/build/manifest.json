@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.ed1797e6.js",
+    "file": "assets/app.1b013e92.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
@@ -8,75 +8,72 @@
     ]
   },
   "resources/js/iglesias.js": {
-    "file": "assets/iglesias.26979cff.js",
+    "file": "assets/iglesias.b53a9d3e.js",
     "src": "resources/js/iglesias.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "resources/js/equipos.js": {
-    "file": "assets/equipos.352dfd1f.js",
+    "file": "assets/equipos.addee7ed.js",
     "src": "resources/js/equipos.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "resources/js/eventos.js": {
-    "file": "assets/eventos.01f6cb51.js",
+    "file": "assets/eventos.dfbc499d.js",
     "src": "resources/js/eventos.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "resources/js/puntajes.js": {
-    "file": "assets/puntajes.e889491a.js",
+    "file": "assets/puntajes.04a8d93c.js",
     "src": "resources/js/puntajes.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "resources/js/preguntas.js": {
-    "file": "assets/preguntas.881dd776.js",
+    "file": "assets/preguntas.d82a1f07.js",
     "src": "resources/js/preguntas.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "__commonjsHelpers.4e997714.js"
-    ],
-    "css": [
-      "assets/preguntas.f0553651.css"
     ]
   },
   "resources/js/respuestas.js": {
-    "file": "assets/respuestas.795462be.js",
+    "file": "assets/respuestas.73bb5d50.js",
     "src": "resources/js/respuestas.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "resources/js/juegos.js": {
-    "file": "assets/juegos.bf18f777.js",
+    "file": "assets/juegos.baa29e9b.js",
     "src": "resources/js/juegos.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "_sweetalert2.6a825d83.js",
       "__commonjsHelpers.4e997714.js"
     ]
@@ -91,7 +88,7 @@
     ]
   },
   "resources/js/graficos.js": {
-    "file": "assets/graficos.bacf36fb.js",
+    "file": "assets/graficos.e3488efd.js",
     "src": "resources/js/graficos.js",
     "isEntry": true,
     "imports": [
@@ -100,12 +97,12 @@
     ]
   },
   "resources/js/informes.js": {
-    "file": "assets/informes.7172dda1.js",
+    "file": "assets/informes.17ed6e5f.js",
     "src": "resources/js/informes.js",
     "isEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_jquery.validate.4f8c037b.js",
+      "_jquery.validate.9d8615a9.js",
       "_sweetalert2.6a825d83.js",
       "__commonjsHelpers.4e997714.js"
     ]
@@ -113,8 +110,8 @@
   "__commonjsHelpers.4e997714.js": {
     "file": "assets/_commonjsHelpers.4e997714.js"
   },
-  "_jquery.validate.4f8c037b.js": {
-    "file": "assets/jquery.validate.4f8c037b.js",
+  "_jquery.validate.9d8615a9.js": {
+    "file": "assets/jquery.validate.9d8615a9.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -131,10 +128,6 @@
   "sweetalert2.css": {
     "file": "assets/sweetalert2.50a54fda.css",
     "src": "sweetalert2.css"
-  },
-  "resources/js/preguntas.css": {
-    "file": "assets/preguntas.f0553651.css",
-    "src": "resources/js/preguntas.css"
   },
   "resources/css/app.css": {
     "file": "assets/app.893c85d1.css",
