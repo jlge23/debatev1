@@ -44,16 +44,16 @@
                     </div>
                     <hr>
                 </div>
-            @endforeach                    
+            @endforeach
         </div>
-    </div> 
+    </div>
     <div id="resp" style="display: none">
         @foreach($pregunta->respuestas as $key=>$value)
             @if($value->validez == 1)
-                <h2 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;<b>{{$value->respuesta}}</b></h2>
+                <h2 class="alert alert-dark text text-uppercase">Respuesta:&nbsp;Opción&nbsp;{{($key+1)}}&nbsp;[<b>{{$value->respuesta}}</b>]</h2>
             @endif
         @endforeach
-        
+
         <div class="row">
             <div class="col-md-12">
                 <h1 id="mensaje" class=""></h1>
