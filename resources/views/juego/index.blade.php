@@ -32,7 +32,7 @@
                                         @foreach($actual as $act)
                                             <li class="list-group-item">
                                                 {{$act->name.": [".$act->y."]"}}
-                                            </li>                       
+                                            </li>
                                         @endforeach
                                         </ul>
                                     </div>
@@ -47,10 +47,10 @@
                                             @isset($puntajes)
                                                 @if($puntajes[0]->activo == 1)
                                                     <input class="form-check-input" type="checkbox" id="comodines" name="comodines" value="1" checked>
-                                                    <label class="form-check-label" for="comodines">Comodines</label>
+                                                    <label class="form-check-label" for="comodines">Comodin</label>
                                                 @else
                                                     <input class="form-check-input" type="checkbox" id="comodines" name="comodines" value="0">
-                                                    <label class="form-check-label" for="comodines">Comodines</label>
+                                                    <label class="form-check-label" for="comodines">Comodin</label>
                                                 @endif
                                             @endisset
                                         </div>
@@ -65,8 +65,8 @@
                             <form action="" method="POST" class="form-control">
                                 @isset($equipo)
                                     <input type="hidden" name="equipo" id="equipo" value="{{$equipo->id}}" readonly>
-                                @endisset                            
-                                <div class="container-fluid" id="juego">
+                                @endisset
+                                <div id="juego">
                                     <table id="DT_juego" class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr>
@@ -74,7 +74,8 @@
                                                 <th>Tipo de pregunta</th>
                                                 <th>Valor</th>
                                                 <th>Comodin</th>
-                                                <th>Disponibles</th>
+                                                <th>Tiempo en segundos</th>
+                                                <th>Preguntas disponibles</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -86,7 +87,8 @@
                                                 <th>Tipo de pregunta</th>
                                                 <th>Valor</th>
                                                 <th>Comodin</th>
-                                                <th>Disponibles</th>
+                                                <th>Tiempo en segundos</th>
+                                                <th>Preguntas disponibles</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </tfoot>

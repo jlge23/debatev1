@@ -46,7 +46,6 @@ $(document).ready(function(){
          "type":"get",
          "url":"informe/resultados"
       },
-      "order": [[0, 'desc']],
       "columns" : [
          {"data":"id",
             "render": function (data, type, row) {

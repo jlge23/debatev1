@@ -59,7 +59,7 @@ class JuegoController extends Controller
 
     public function comodin($opt)
     {
-        
+
         if(isset($opt)){
             $puntajes = Puntaje::all();
             //return $puntajes[0]->activo;die();
@@ -73,7 +73,7 @@ class JuegoController extends Controller
                         $puntaje->activo = 1;
                         $puntaje->save();
                         unset($puntaje);
-                        
+
                     }
                     return 1;
                 break;
@@ -86,22 +86,22 @@ class JuegoController extends Controller
                         $puntaje->activo = 0;
                         $puntaje->save();
                         unset($puntaje);
-                        
+
                     }
                     return 0;
                 break;
             }
         }
-           
+
         //return view('juego.index', compact('eventos'));
     }
 /*     public function findEquipos(){
-        $EquipoIglesia = Equipo::with('iglesia')->get(); 
+        $EquipoIglesia = Equipo::with('iglesia')->get();
         return $EquipoIglesia;
     } */
     /*
     SELECT puntajes.nombre,puntajes.valor,puntajes.comodin, COUNT('preguntas.id') AS preguntas FROM
-puntajes INNER JOIN 
+puntajes INNER JOIN
 	preguntas ON preguntas.puntaje_id = puntajes.id
 WHERE preguntas.status = 1
 GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
@@ -114,9 +114,9 @@ GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
             ->join('preguntas', function ($join) {
                 $join->on('puntajes.id', '=', 'preguntas.puntaje_id');
             })
-            ->select('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin',\DB::raw('COUNT(preguntas.id) AS cantidad'))
+            ->select('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin','puntajes.tiempo',\DB::raw('COUNT(preguntas.id) AS cantidad'))
             ->where('preguntas.status','=',1)
-            ->groupBy('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin')
+            ->groupBy('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin','puntajes.tiempo')
             ->orderBy('puntajes.nombre','DESC')
             ->get();
         foreach($preguntas as $pregunta){
@@ -125,6 +125,7 @@ GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
                 'nombre' => $pregunta->nombre,
                 'valor' => $pregunta->valor,
                 'comodin' => $pregunta->comodin,
+                'tiempo' => $pregunta->tiempo,
                 'cantidad' => $pregunta->cantidad
             );
         }

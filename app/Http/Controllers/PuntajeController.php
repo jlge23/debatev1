@@ -16,10 +16,11 @@ class PuntajeController extends Controller
 
     public function create()
     {
-        return view('puntaje.create');
+        $tiempos = Puntaje::all();
+        return view('puntaje.create',compact('tiempos'));
     }
 
-    public function store(StorePuntaje $request)
+    public function store(Request $request)
     {
         Puntaje::create($request->post());
         return redirect()->route('puntaje.index');
@@ -27,8 +28,9 @@ class PuntajeController extends Controller
 
     public function edit(Puntaje $puntaje, $id)
     {
+        $tiempos = Puntaje::all();
         $puntaje = Puntaje::findOrFail($id);
-        return view('puntaje.edit',compact('puntaje'));
+        return view('puntaje.edit',compact('puntaje','tiempos'));
     }
 
     public function update(Request $request)

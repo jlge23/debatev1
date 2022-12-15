@@ -1,5 +1,5 @@
 import './app';
-import Highcharts from "highcharts"; 
+import Highcharts from "highcharts";
 import Exporting from 'highcharts/modules/exporting';
 import ExportData from 'highcharts/modules/export-data';
 import Accessibility from 'highcharts/modules/accessibility';
@@ -23,21 +23,21 @@ $(document).ready(function(){
                         type: 'column',
                         styledMode: false
                     },
-                
+
                     title: {
                         text: 'Estado del juego, Aciertos y Desaciertos',
                         align: 'left'
                     },
-                
+
                     subtitle: {
                         text: 'Source',
                         align: 'left'
                     },
-                
+
                     xAxis: {
                         categories: data['categories'] //Equipos
                     },
-                
+
                     yAxis: [{ // Primary axis
                         className: 'highcharts-color-0',
                         title: {
@@ -50,15 +50,15 @@ $(document).ready(function(){
                             text: 'Desaciertos'
                         }
                     }],
-                
+
                     plotOptions: {
                         column: {
                             borderRadius: 5
                         }
                     },
-                
+
                     series: data['series']
-                
+
                 });
             }else{
                 $("div#container0").addClass('alert alert-warning').html('Esperando que inicie el juego');
@@ -104,12 +104,12 @@ $(document).ready(function(){
                             }
                         }
                     },
-                
+
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                         pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
                     },
-                
+
                     series: [
                         {
                             name: "Equipo",
@@ -196,7 +196,7 @@ $(document).ready(function(){
                         headerFormat: '<b>{series.name}</b><br>',
                         pointFormat: '{point.y:.2f} s'
                     },
-                
+
                     plotOptions: {
                         series: {
                             marker: {
@@ -205,9 +205,9 @@ $(document).ready(function(){
                             }
                         }
                     },
-                
+
                     colors: ['#6CF', '#39F', '#06C', '#036', '#000'],
-                
+
                     // Define the data points. All series have a year of 1970/71 in order
                     // to be compared on the same x axis. Note that in JavaScript, months start
                     // at 0 for January, 1 for February etc.
@@ -273,5 +273,5 @@ $(document).ready(function(){
         });
         return true;
     }
-    setInterval(graficos,10000);
+    setInterval(graficos,5000);
 });

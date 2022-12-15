@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre')->unique();
             $table->integer('valor')->unique();
             $table->integer('comodin')->unique();
+            $table->integer('tiempo');
             $table->boolean('activo')->default(0);
             $table->timestamps();
         });

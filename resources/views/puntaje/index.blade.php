@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title','Datos de Puntajes')
-    
+
 @vite(['resources/js/puntajes.js','resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css'])
 @section('content')
     <div class="container">
@@ -16,6 +16,7 @@
                     <th>Nombre</th>
                     <th>Valor</th>
                     <th>Comodin</th>
+                    <th>Tiempos</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <td>{{$puntaje->nombre}}</td>
                     <td>{{$puntaje->valor}}</td>
                     <td>{{$puntaje->comodin}}</td>
+                    <td>{{$puntaje->tiempo}}</td>
                     <td>
                         <a href="{{route('puntaje.edit',$puntaje->id)}}" class="btn btn-sm btn-secondary">Editar</a>
                         <form action="{{route('puntaje.destroy',$puntaje->id)}}" method="POST">
@@ -43,6 +45,7 @@
                     <th>Nombre</th>
                     <th>Valor</th>
                     <th>Comodin</th>
+                    <th>Tiempos</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>

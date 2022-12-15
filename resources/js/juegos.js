@@ -36,7 +36,7 @@ $(document).ready(function(){
             }
         })
     });
-    
+
     $('input#comodines').on('change',function(){
         const AudioComodin = new Audio("http://"+window.location.host+"/storage/media/comodines.mp3");
         AudioComodin.loop = false;
@@ -52,7 +52,7 @@ $(document).ready(function(){
                 allowEnterKey : false,
                 showCloseButton: false,
                 showConfirmButton: false,
-                timer: 4500
+                timer: 4000
             });
         }
         $.ajax({
@@ -97,10 +97,10 @@ $(document).ready(function(){
                  .appendTo($(column.footer()).empty())
                  .on('change', function () {
                     var val = $.fn.dataTable.util.escapeRegex($(this).val());
-  
+
                     column.search(val ? '^' + val + '$' : '', true, false).draw();
                  });
-  
+
                 column
                     .data()
                     .unique()
@@ -134,7 +134,7 @@ $(document).ready(function(){
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         },
-        "order": [[5, 'asc']],
+        "order": [[1, 'asc']],
         "ajax":{
             "type":"get",
             "url":"juego/preguntas"
@@ -144,11 +144,12 @@ $(document).ready(function(){
             {"data":"nombre",
                 "render": function (data, type, row) {
                     return "<label class='text text-dark text-center'>"+data+"</b></label>";
-  
+
                 }
             },
             {"data":"valor"},
             {"data":"comodin"},
+            {"data":"tiempo"},
             {"data":"cantidad"},
             {"data":"id,",
                 "render": function (data, type, row) {
@@ -172,23 +173,20 @@ $(document).ready(function(){
         },
         submitHandler : function(){
             $("form#FRM_vf")[0].submit();
-            //console.log($("form#nueva_pregunta").serialize());
         }
     });
 
     //Simple
     $("form#FRM_simple").validate({
-        submitHandler : function(){      
+        submitHandler : function(){
             $("form#FRM_simple")[0].submit();
-            //console.log($("form#nueva_pregunta").serialize());
         }
     });
-    
+
     //Desarrollo
     $("form#FRM_desarrollo").validate({
         submitHandler : function(){
             $("form#FRM_desarrollo")[0].submit();
-            //console.log($("form#nueva_pregunta").serialize());
         }
     });
 

@@ -62,7 +62,7 @@ $(document).ready(function(){
             }
         },
         submitHandler : function(){
-            if(confirm("¿Confirma el registro de los datos?"))              
+            if(confirm("¿Confirma el registro de los datos?"))
                 $("form#nuevo_puntaje")[0].submit();
                 //console.log($("form#nuevo_puntaje").serialize());
         }
@@ -80,6 +80,10 @@ $(document).ready(function(){
             comodin : {
                 required : true,
                 number : true
+            },
+            tiempo : {
+                required : true,
+                number : true
             }
         },
         messages : {
@@ -93,10 +97,14 @@ $(document).ready(function(){
             comodin : {
                 required : "Valor de la ponderación del comodin requerido",
                 number : "El valor ponderante de comodin debe ser numérico"
+            },
+            tiempo : {
+                required : "Valor del tiempo de duración es requerido",
+                number : "El valor del tiempo de duración debe ser numérico"
             }
         },
         submitHandler : function(){
-            if(confirm("¿Confirma la actualización los datos? ACTUALIZAR"))                
+            if(confirm("¿Confirma la actualización los datos? ACTUALIZAR"))
                 $("form#editar_puntaje")[0].submit();
                 //console.log($("form#editar_puntaje").serialize());
         }

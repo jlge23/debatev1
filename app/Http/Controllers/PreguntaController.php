@@ -18,8 +18,7 @@ class PreguntaController extends Controller
     public function create()
     {
         $puntajes = Puntaje::all();
-        $tiempos = Pregunta::select('tiempo')->orderBy('tiempo','asc')->groupBy('tiempo')->get();
-        return view('pregunta.create',compact('puntajes','tiempos'));
+        return view('pregunta.create',compact('puntajes'));
     }
 
     public function store(StorePregunta $request)
@@ -30,7 +29,8 @@ class PreguntaController extends Controller
 
     public function edit(Pregunta $pregunta, $id)
     {
-        $tiempos = Pregunta::select('tiempo')->orderBy('tiempo','asc')->groupBy('tiempo')->get();
+        //$tiempos = Pregunta::select('tiempo')->orderBy('tiempo','asc')->groupBy('tiempo')->get();
+        $tiempos = Pregunta::select('tiempo')->orderBy('tiempo','asc')->get();
         $puntajes = Puntaje::all();
         $pregunta = Pregunta::findOrFail($id);
         return view('pregunta.edit',compact('pregunta','puntajes','tiempos'));

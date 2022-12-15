@@ -8,22 +8,24 @@
 <label>Tiempo de duracion de la pregunta&nbsp;
     <select name="tiempo" id="tiempo" class="form-select">
         <option value="">Seleccione</option>
-        @if(isset($tiempos))
-            @foreach($tiempos as $tiempo)
+        @if(isset($puntajes))
+            @foreach ($puntajes as $puntaje)
                 @if(isset($pregunta))
-                    @if(($tiempo->tiempo == $pregunta->tiempo) or ($tiempo->tiempo == old('tiempo')))
-                        <option value="{{$tiempo->tiempo}}" selected>{{$tiempo->tiempo}}&nbsp;segundos</option>
+                    @if (($pregunta->puntaje->tiempo == $puntaje->tiempo) or ($pregunta->puntaje->tiempo == old('tiempo')))
+                        <option value="{{$puntaje->tiempo}}" selected>{{$puntaje->tiempo}}&nbsp;segundos</option>
                     @else
-                        <option value="{{$tiempo->tiempo}}">{{$tiempo->tiempo}}&nbsp;segundos</option>
+                        <option value="{{$puntaje->tiempo}}">{{$puntaje->tiempo}}&nbsp;segundos</option>
                     @endif
                 @else
-                    @if(($tiempo->tiempo == old('tiempo')))
-                        <option value="{{$tiempo->tiempo}}" selected>{{$tiempo->tiempo}}&nbsp;segundos</option>
+                    @if ($puntaje->id == old('tiempo'))
+                        <option value="{{$puntaje->tiempo}}" selected>{{$puntaje->tiempo}}&nbsp;segundos</option>
                     @else
-                        <option value="{{$tiempo->tiempo}}">{{$tiempo->tiempo}}&nbsp;segundos</option>
+                        <option value="{{$puntaje->tiempo}}">{{$puntaje->tiempo}}&nbsp;segundos</option>
                     @endif
                 @endif
             @endforeach
+        @else
+            <option value="#" disabled>No se encuentran Tiempos registrados</option>
         @endif
     </select>
 </label>
@@ -36,13 +38,13 @@
         @if(isset($puntajes))
             @foreach ($puntajes as $puntaje)
                 @if(isset($pregunta))
-                    @if (($pregunta->puntaje_id == $puntaje->id) or ($puntaje->id == old('puntaje_id'))) 
+                    @if (($pregunta->puntaje_id == $puntaje->id) or ($puntaje->id == old('puntaje_id')))
                         <option value="{{$puntaje->id}}" selected>{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
                     @else
                         <option value="{{$puntaje->id}}">{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
                     @endif
                 @else
-                    @if ($puntaje->id == old('puntaje_id')) 
+                    @if ($puntaje->id == old('puntaje_id'))
                         <option value="{{$puntaje->id}}" selected>{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
                     @else
                         <option value="{{$puntaje->id}}">{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>

@@ -9,36 +9,37 @@
             </div>
         @else
             <div class="container-fluid border">
+                <div class="row border">
                     <div class="col-md-12">
                         <h1 class="alert alert-primary">Resultados del juego</h1>
-                        <table class="table table-bordered table-striped table-hover" id="DT_informe">
-                            <thead>
-                                <tr>
-                                    <th>Turno</th>
-                                    <th>Equipo</th>
-                                    <th>Tipo de pregunta</th>
-                                    <th>Pregunta</th>
-                                    <th>Respuesta correcta</th>
-                                    <th>Resultado</th>
-                                    <th>Puntos</th>
-                                    <th>Tiempo de respuesta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Turno</th>
-                                    <th>Equipo</th>
-                                    <th>Tipo de pregunta</th>
-                                    <th>Pregunta</th>
-                                    <th>Respuest correcta</th>
-                                    <th>Resultado</th>
-                                    <th>Puntos</th>
-                                    <th>Tiempo de respuesta</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                            <table class="table table-bordered table-striped table-hover" id="DT_informe">
+                                <thead>
+                                    <tr>
+                                        <th>Turno</th>
+                                        <th>Equipo</th>
+                                        <th>Tipo de pregunta</th>
+                                        <th>Pregunta</th>
+                                        <th>Respuesta correcta</th>
+                                        <th>Resultado</th>
+                                        <th>Puntos</th>
+                                        <th>Tiempo de respuesta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Turno</th>
+                                        <th>Equipo</th>
+                                        <th>Tipo de pregunta</th>
+                                        <th>Pregunta</th>
+                                        <th>Respuest correcta</th>
+                                        <th>Resultado</th>
+                                        <th>Puntos</th>
+                                        <th>Tiempo de respuesta</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                     </div>
                 </div>
                 <div class="row border">
@@ -52,7 +53,7 @@
                     </div>
                 </div>
                 <div class="row border">
-                    <div class="col">   
+                    <div class="col">
                         <div class="row">
                             <div class="col">
                                 <figure class="highcharts-figure">
@@ -62,7 +63,7 @@
                                     </p>
                                 </figure>
                             </div>
-                        </div>  
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <figure class="highcharts-figure">
@@ -71,8 +72,8 @@
                                         Porcentaje en puntaje alcanzado por equipos
                                     </p>
                                 </figure>
-                            </div>    
-                        </div>                   
+                            </div>
+                        </div>
                     </div>
                     <div class="col">
                         <div class="row">
@@ -97,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         @endif
     @endisset
