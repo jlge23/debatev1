@@ -33,7 +33,7 @@
                         <ul class="nav navbar-nav">
                         </ul>
                     @else
-                        @if(Auth::user()->name == 'Admin')
+                        @if(Auth::user()->name == 'Admin' or Auth::user()->name == 'Jurado')
                             <ul class="nav navbar-nav">
                                 <li class="nav-item"><a class="nav-link active" href="{{ url('/home') }}">Inicio</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('iglesia') }}">Iglesias</a></li>
@@ -41,7 +41,6 @@
                                 <li class="nav-item"><a class="nav-link" href="{{ url('equipo') }}">Equipos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('puntaje') }}">Puntajes</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('pregunta') }}">Preguntas</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ url('respuesta') }}">Respuesta</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('juego') }}">Juego</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('informe') }}">Informes</a></li>
                             </ul>

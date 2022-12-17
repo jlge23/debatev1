@@ -38,7 +38,7 @@
     ]
   },
   "resources/js/puntajes.js": {
-    "file": "assets/puntajes.04a8d93c.js",
+    "file": "assets/puntajes.8ffc8f05.js",
     "src": "resources/js/puntajes.js",
     "isEntry": true,
     "imports": [
@@ -48,7 +48,7 @@
     ]
   },
   "resources/js/preguntas.js": {
-    "file": "assets/preguntas.d82a1f07.js",
+    "file": "assets/preguntas.8cb1fef5.js",
     "src": "resources/js/preguntas.js",
     "isEntry": true,
     "imports": [
@@ -68,7 +68,7 @@
     ]
   },
   "resources/js/juegos.js": {
-    "file": "assets/juegos.baa29e9b.js",
+    "file": "assets/juegos.2074a31b.js",
     "src": "resources/js/juegos.js",
     "isEntry": true,
     "imports": [
@@ -79,7 +79,7 @@
     ]
   },
   "resources/js/relog.js": {
-    "file": "assets/relog.105ac9f2.js",
+    "file": "assets/relog.a23a4280.js",
     "src": "resources/js/relog.js",
     "isEntry": true,
     "imports": [
@@ -88,7 +88,7 @@
     ]
   },
   "resources/js/graficos.js": {
-    "file": "assets/graficos.e3488efd.js",
+    "file": "assets/graficos.8da11745.js",
     "src": "resources/js/graficos.js",
     "isEntry": true,
     "imports": [
@@ -97,7 +97,7 @@
     ]
   },
   "resources/js/informes.js": {
-    "file": "assets/informes.17ed6e5f.js",
+    "file": "assets/informes.7d58de3c.js",
     "src": "resources/js/informes.js",
     "isEntry": true,
     "imports": [
@@ -129,14 +129,14 @@
     "file": "assets/sweetalert2.50a54fda.css",
     "src": "sweetalert2.css"
   },
+  "resources/css/app.css": {
+    "file": "assets/app.da4f7243.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
   "resources/sass/app.scss": {
     "file": "assets/app.39c7e27e.css",
     "src": "resources/sass/app.scss",
-    "isEntry": true
-  },
-  "resources/css/app.css": {
-    "file": "assets/app.893c85d1.css",
-    "src": "resources/css/app.css",
     "isEntry": true
   }
 }

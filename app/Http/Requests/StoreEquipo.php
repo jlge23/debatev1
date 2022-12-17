@@ -24,7 +24,7 @@ class StoreEquipo extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:255|regex:/(^([a-zA-zÑñÁÉÍÓÚáéíóú.\' ]+)$)/u',
+            'nombre' => 'required|max:255|regex:/(^([0-9a-zA-zÑñÁÉÍÓÚáéíóú.\' ]+)$)/u',
             'iglesia_id' => 'required'
         ];
     }

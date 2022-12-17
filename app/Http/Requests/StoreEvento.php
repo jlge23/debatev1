@@ -26,7 +26,7 @@ class StoreEvento extends FormRequest
         return [
             'nombre' => 'required|max:255|regex:/(^([0-9a-zA-zÑñÁÉÍÓÚáéíóú.\' ]+)$)/u',
             'descripcion' => 'required|max:255|regex:/(^([0-9a-zA-zÑñÁÉÍÓÚáéíóú.\' ]+)$)/u',
-            'fecha' => 'required|date_format:Y-m-d|after:tomorrow',
+            'fecha' => 'required|date_format:Y-m-d',
             'iglesia_id' => 'required'
         ];
     }
@@ -52,7 +52,6 @@ class StoreEvento extends FormRequest
             'descripcion.regex' => 'Sólo se permiten caracteres en Mayusculas, minusculas, números y cactacteres .\' y Espacios',
             'fecha.required' => 'Fecha de inicio del evento requerida',
             'fecha.date_format' => 'Tipée la fecha en el formato Año-Mes-dia. Ej: 2022-01-01',
-            'fecha.after' => 'Elija una fecha a partir del dia de hoy en adelante',
             'iglesia_id.required' => 'Selecciones la Iglesia o lugar de procedencia'
         ];
     }

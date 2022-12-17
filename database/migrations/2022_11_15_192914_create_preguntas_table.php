@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion')->unique();
-            $table->integer('tiempo');
+            $table->integer('numero');
+            $table->integer('punto');
+            $table->longtext('pregunta')->unique();
+            $table->longtext('respuesta');
             $table->unsignedBigInteger('puntaje_id');
             $table->foreign('puntaje_id')->references('id')->on('puntajes')
                 ->onUpdate('cascade')

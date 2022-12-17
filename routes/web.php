@@ -5,7 +5,6 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PuntajeController;
 use App\Http\Controllers\PreguntaController;
-use App\Http\Controllers\RespuestaController;
 use App\Http\Controllers\JuegoController;
 use App\Http\Controllers\InformeController;
 use Illuminate\Support\Facades\Auth;
@@ -60,25 +59,19 @@ Route::delete('puntaje/{id}',[PuntajeController::class,'destroy'])->name('puntaj
 
 Route::get('pregunta',[PreguntaController::class,'index'])->name('pregunta.index');
 Route::get('pregunta/nuevo',[PreguntaController::class,'create'])->name('pregunta.create');
+Route::get('pregunta/{id}',[PreguntaController::class,'numero'])->name('pregunta.numero');
 Route::post('pregunta',[PreguntaController::class,'store'])->name('pregunta.store');
 Route::get('pregunta/{id}/editar',[PreguntaController::class, 'edit'])->name('pregunta.edit');
 Route::put('pregunta',[PreguntaController::class,'update'])->name('pregunta.update');
 Route::delete('pregunta/{id}',[PreguntaController::class,'destroy'])->name('pregunta.destroy');
 
-Route::get('respuesta',[RespuestaController::class,'index'])->name('respuesta.index');
-Route::get('respuesta/nuevo',[RespuestaController::class,'create'])->name('respuesta.create');
-Route::post('respuesta',[RespuestaController::class,'store'])->name('respuesta.store');
-Route::get('respuesta/{id}/editar',[RespuestaController::class, 'edit'])->name('respuesta.edit');
-Route::put('respuesta',[RespuestaController::class,'update'])->name('respuesta.update');
-Route::delete('respuesta/{id}',[RespuestaController::class,'destroy'])->name('respuesta.destroy');
-
 Route::get('juego',[JuegoController::class,'index'])->name('juego.index');
 Route::get('juego/reset',[JuegoController::class,'reset'])->name('juego.reset');
-Route::get('juego/preguntas',[JuegoController::class,'findPreguntas'])->name('juego.findPreguntas');
+Route::get('juego/dificultad',[JuegoController::class,'dificultad'])->name('juego.dificultad');
+Route::get('juego/{id}/preguntas/',[JuegoController::class,'preguntas'])->name('juego.preguntas');
 Route::get('juego/equipos',[JuegoController::class,'findEquipos'])->name('juego.findEquipos');
 Route::post('juego',[JuegoController::class,'store'])->name('juego.store');
-Route::get('juego/{opt}/comodin',[JuegoController::class,'comodin'])->name('juego.comodin');
-Route::get('juego/{p}/{e}',[JuegoController::class, 'edit'])->name('juego.edit');
+Route::get('juego/{e}/{p}',[JuegoController::class, 'edit'])->name('juego.edit');
 Route::put('juego',[JuegoController::class,'update'])->name('juego.update');
 Route::delete('juego/{id}',[JuegoController::class,'destroy'])->name('juego.destroy');
 

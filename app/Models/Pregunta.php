@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pregunta extends Model
 {
-    protected $fillable = ['descripcion','tiempo','puntaje_id','status'];
+    protected $fillable = ['id','numero','punto','pregunta','respuesta','puntaje_id','status'];
     //Relacion 1:n - Respuestas
-    public function respuestas(){
-        return $this->hasMany(Respuesta::class);
+    public function juegos(){
+        return $this->hasMany(Juego::class);
     }
 
     //Relacion 1:n inversa - Puntajes

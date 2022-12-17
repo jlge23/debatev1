@@ -57,13 +57,6 @@
                                     <label class="text text-danger"><b>&nbsp;Falta.</b></label>&nbsp;<a class="btn btn-link" href="{{ url('pregunta') }}">Preguntas</a>
                                 @endif
                             </li>
-                            <li>Registrar las Respuestas
-                                @if($respuestas[0]->respuesta > 0)
-                                    <label class="text text-success"><b>&nbsp;Listo [{{$respuestas[0]->respuesta}}]</b></label>
-                                @else
-                                    <label class="text text-danger"><b>&nbsp;Falta.</b></label>&nbsp;<a class="btn btn-link" href="{{ url('respuesta') }}">Respuestas</a>
-                                @endif
-                            </li>
                             <li>Iniciar el Juego
                                 @if($juegos[0]->juego > 0)
                                     <label class="text text-success"><b>&nbsp;Listo [{{$juegos[0]->juego}}]</b></label>

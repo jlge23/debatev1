@@ -13,7 +13,7 @@ class InformeController extends Controller
 {
     public function index()
     {
-        $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo 
+        $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
         return view('informe.index',compact('evento'));
     }
 
@@ -22,13 +22,11 @@ class InformeController extends Controller
         $juegos = DB::table('juegos')
             ->join('equipos', function ($join) {
                 $join->on('equipos.id', '=', 'juegos.equipo_id');})
-            ->join('respuestas', function ($join) {
-                $join->on('respuestas.id', '=', 'juegos.respuesta_id');})
             ->join('preguntas', function ($join) {
-                $join->on('preguntas.id', '=', 'respuestas.pregunta_id');})
+                $join->on('preguntas.id', '=', 'juegos.pregunta_id');})
             ->join('puntajes', function ($join) {
                 $join->on('puntajes.id', '=', 'preguntas.puntaje_id');})
-            ->select('juegos.id','equipos.nombre','puntajes.nombre AS tipo','preguntas.descripcion','respuestas.respuesta','juegos.acierto','juegos.puntos','juegos.tiempo')
+            ->select('juegos.id','equipos.nombre','puntajes.nombre AS tipo','preguntas.pregunta','preguntas.respuesta','juegos.acierto','juegos.puntos','juegos.tiempo')
             ->where('juegos.evento_id','=',$evento[0]->id)
             ->orderBy('juegos.id','asc')->get();
         foreach($juegos as $juego){
@@ -36,7 +34,7 @@ class InformeController extends Controller
                 'id' => $juego->id,
                 'nombre' => $juego->nombre,
                 'tipo' => $juego->tipo,
-                'descripcion' => $juego->descripcion,
+                'descripcion' => $juego->pregunta,
                 'respuesta' => $juego->respuesta,
                 'acierto' => $juego->acierto,
                 'puntos' => $juego->puntos,
@@ -47,7 +45,7 @@ class InformeController extends Controller
             return $data['data'][] = 'null';
         }else{
             return $data;
-        }   
+        }
     }
 
     public function graficos($grafico){
@@ -63,9 +61,9 @@ class InformeController extends Controller
                     ->groupBy('equipos.id','equipos.nombre')
                     ->orderBy('equipos.id')
                     ->get();
-                
+
                 foreach($equipos as $key => $equipo){
-                    $A['categories'][$key] = array($equipo->nombre); 
+                    $A['categories'][$key] = array($equipo->nombre);
                 }
                     $A['series'][0] = array('name' => 'ACIERTOS');
                 foreach($equipos as $key => $equipo){
@@ -78,7 +76,7 @@ class InformeController extends Controller
                     $A['series'][1]['data'][$key] = array($C2[0]->data);
                 }
                 return json_encode($A,JSON_NUMERIC_CHECK);
-                
+
             break;
             case 1:
                 $equipos = DB::table('juegos')
@@ -126,7 +124,7 @@ class InformeController extends Controller
                 return json_encode($arr,JSON_NUMERIC_CHECK);
             break;
             case 4:
-                $arr[] = array(); 
+                $arr[] = array();
                 $preguntas = Pregunta::select(
                     \DB::raw('CASE WHEN status = 1 THEN "Activas" WHEN status = 0 THEN "Inactivas" END AS pregunta'),
                     \DB::raw('COUNT(status) AS status'))->groupBy('status')->get();
@@ -136,26 +134,6 @@ class InformeController extends Controller
                 return json_encode($arr,JSON_NUMERIC_CHECK);
             break;
         }
-        
-    }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

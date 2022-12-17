@@ -14,15 +14,17 @@ $(document).ready(function(){
     AudioError.loop = false;
     AudioError.controls = true;
 
+    const AudioOpcion= new Audio("http://"+window.location.host+"/storage/media/opcion.mp3");
+    AudioOpcion.loop = false;
+    AudioOpcion.controls = true;
+
     if($("form#FRM_vf").length > 0){
         $("input[name='opcion']").attr('disabled','disabled').attr('checked', false);
     }
-    if($("form#FRM_simple").length > 0){
-        $("select#opcion").prop('disabled','disabled');
-    }
+
     if($("form#FRM_desarrollo").length > 0){
         $("input#opcion").attr('disabled',false);
-    }    
+    }
 
     var initial = $("input#tiempo").val() * 1000;
     var count = initial;
@@ -73,33 +75,44 @@ $(document).ready(function(){
 
     }
     //iniciar cuenta regresiva
-    $('button#start').on('click', function() {
+    $('button#start1').on('click', function() {
         AudioTime.play();
         $("input[name='opcion']").attr('disabled',false);
-        $("select#opcion").prop("disabled",false);
         $(this).prop('disabled',true);
-        $("button#pausa").prop('disabled',false);
-        if($("button#stop")){$("button#stop").attr("disabled",false);}
+        $("button#stop1").attr("disabled",false);
         document.getElementById("reloj_sg").classList.remove("rojo");
         document.getElementById("reloj_cs").classList.remove("rojo");
         clearInterval(counter);
         initialMillis = Date.now();
         counter = setInterval(timer, 1);
     });
-    /* const AudioSuccess= new Audio("http://"+window.location.host+"/storage/media/success.mp3");
-    AudioSuccess.loop = false;
-    AudioSuccess.controls = true; */
+
+    $('button#start2').on('click', function() {
+        AudioTime.play();
+        $("input[name='opcion']").attr('disabled',false);
+        $(this).prop('disabled',true);
+        $("button#stop2").attr("disabled",false);
+        document.getElementById("reloj_sg").classList.remove("rojo");
+        document.getElementById("reloj_cs").classList.remove("rojo");
+        clearInterval(counter);
+        initialMillis = Date.now();
+        counter = setInterval(timer, 1);
+    });
+
     //Verdadero y falso
+    $("button#stop1").on("click",function(){
+        $("#OPT").css("display","block");
+        clearInterval(counter);
+        AudioTime.pause();
+        AudioOpcion.play();
+        $("input#duracion").val((initial - count) / 1000);
+    });
     $("input[type='radio'][name='opcion']").on('change', function() {
-        clearInterval(counter);
-        $("input#duracion").val((initial - count) / 1000);
         //revelar respuesta y resultado
-        $("div#resp").css("display","block");
-        var opcion = ($(this).val());
-        $("input#validez").val(opcion);
-        var r_correcta = $("input#r_correcta").val();
+        var opcion = $(this).val();
         AudioTime.pause();
-        if(r_correcta === opcion){
+        if(opcion == 1){
+            AudioOpcion.pause();
             AudioSuccess.play();
             Swal.fire({
                 position: 'center',
@@ -109,6 +122,7 @@ $(document).ready(function(){
             });
             $("input#opcion1").attr('disabled','disabled').attr('checked', false);
             $("input#opcion2").attr('disabled','disabled').attr('checked', false);
+            $("input#validez").val(1);
         }else{
             AudioError.play();
             Swal.fire({
@@ -117,51 +131,29 @@ $(document).ready(function(){
                 title: '¡RESPUESTA INCORRECTA. ¡SIGUE INTENTANDO!',
                 showConfirmButton: true
             });
-            
+
             $("input#opcion1").attr('disabled','disabled').attr('checked', false);
             $("input#opcion2").attr('disabled','disabled').attr('checked', false);
         }
-    });
-    //seleccion simple
-    $("select#opcion").on('change', function() {
-        clearInterval(counter);
-        $("input#duracion").val((initial - count) / 1000);
-        //revelar respuesta y resultado
         $("div#resp").css("display","block");
-        var opcion = ($("select#opcion option:selected").val());
-        var respuesta_id = $("input#respuesta_id").val();
-        AudioTime.pause();
-        if(respuesta_id === opcion){
-            AudioSuccess.play();
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: '¡RESPUESTA CORRECTA. FELICIDADES!',
-                showConfirmButton: true
-            });
-            $(this).prop('disabled','disabled');
-            $('input#seleccion').val(opcion);
-        }else{
-            AudioError.play();
-            Swal.fire({
-                position: 'center',
-                icon: 'error',
-                title: '¡RESPUESTA INCORRECTA. ¡SIGUE INTENTANDO!',
-                showConfirmButton: true
-            });
-            $(this).prop('disabled','disabled');
-            $('input#seleccion').val(opcion);
-        }
     });
+
     //Desarrollo
-    $("button#stop").on('click', function() {
+    $("button#stop2").on('click', function() {
         clearInterval(counter);
         $("input#duracion").val((initial - count) / 1000);
         //revelar respuesta y resultado
         $("div#resp").css("display","block");
         AudioTime.pause();
+        AudioOpcion.play();
         $("input[type='range']#opcion").on("input",function(){
             $("label#punto").html("Apreciacion:&nbsp;(<b>"+$(this).val()+"</b>)");
+            if($(this).val() > 0){
+                $("input#validez").val(1);
+            }else{
+                $("input#validez").val(0);
+            }
+            AudioOpcion.pause();
             AudioSuccess.play();
         });
     });

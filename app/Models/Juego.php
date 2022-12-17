@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Juego extends Model
 {
-    protected $fillable = ['fecha','puntos','seleccion','tiempo','acierto','equipo_id','evento_id','respuesta_id'];
+    protected $fillable = ['fecha','puntos','tiempo','acierto','equipo_id','evento_id','pregunta_id'];
 
     //Relacion 1:n inversa - Equipos
     public function equipo(){
@@ -19,7 +19,7 @@ class Juego extends Model
     }
 
     //Relacion 1:n inversa - Respuestas
-    public function respuesta(){
-        return $this->belongsTo(Respuesta::class);
+    public function pregunta(){
+        return $this->belongsTo(Pregunta::class);
     }
 }

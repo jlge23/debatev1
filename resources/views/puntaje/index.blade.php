@@ -14,9 +14,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
-                    <th>Valor</th>
-                    <th>Comodin</th>
                     <th>Tiempos</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -25,9 +24,8 @@
                 <tr>
                     <td>{{$puntaje->id}}</td>
                     <td>{{$puntaje->nombre}}</td>
-                    <td>{{$puntaje->valor}}</td>
-                    <td>{{$puntaje->comodin}}</td>
                     <td>{{$puntaje->tiempo}}</td>
+                    <td>{{$puntaje->activo}}</td>
                     <td>
                         <a href="{{route('puntaje.edit',$puntaje->id)}}" class="btn btn-sm btn-secondary">Editar</a>
                         <form action="{{route('puntaje.destroy',$puntaje->id)}}" method="POST">
@@ -43,9 +41,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
-                    <th>Valor</th>
-                    <th>Comodin</th>
                     <th>Tiempos</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>

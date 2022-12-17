@@ -28,108 +28,88 @@ class JuegoController extends Controller
                         ->groupBy('equipos.nombre')
                         ->orderBy('equipos.id')
                         ->get();
-            $puntajes = Puntaje::select('activo')->groupBy('activo')->get();
             $juego = Juego::where('juegos.evento_id','=',$evento[0]->id)->orderBy('id','desc')->first();//Devuelve el ultimo 'id' con ordenamiento decreciente
             $equipos = Equipo::select(DB::raw('COUNT(id) as id'))->first();//devuelve la cantidad de equipos registrados
-            $preguntas = Pregunta::select('id')->where('status','=',1)->orderBy('id','asc')->first();//devuelve el 'id' de la pregunta, siempre que tenga status=1, de forma ascendente
-            if(!(gettype($preguntas) == 'NULL')){
-                $preguntas = 1;
-                switch(true){
-                    case (gettype($juego) == 'NULL')://no hay datos en la tabla juego
-                        $equipo = Equipo::find(1);
-                        return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
-                    break;
-                    case ($juego->equipo_id >= 1 and $juego->equipo_id < $equipos->id):
-                        $equipo = Equipo::find(($juego->equipo_id + 1));
-                        return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
-                    break;
-                    case ($juego->equipo_id == $equipos->id):
-                        $equipo = Equipo::find(1);
-                        return view('juego.index',compact('equipo','evento','preguntas','actual','puntajes'));
-                    break;
-                }
-            }else{
-                $preguntas = 0;
+            $progreso = Pregunta::select(\DB::raw('COUNT(preguntas.id) AS cuantos'))->where('status','=',0)->where('puntaje_id','!=',4)->get();
+            if($progreso[0]->cuantos == 30){
+                Puntaje::where('activo','=',0)->update(['activo'=>1]);
+            }
+            $Preg = Pregunta::all();
+            if(count($Preg) == 0){
+                $preguntas = -1;
                 return view('juego.index',compact('preguntas','evento'));
+            }else{
+                $preguntas = Pregunta::select('id')->where('status','=',1)->orderBy('id','asc')->first();//devuelve el 'id' de la pregunta, siempre que tenga status=1, de forma ascendente
+                if(!(gettype($preguntas) == 'NULL')){
+                    $preguntas = 1;
+                    switch(true){
+                        case (gettype($juego) == 'NULL')://no hay datos en la tabla juego
+                            $equipo = Equipo::find(1);
+                            return view('juego.index',compact('equipo','evento','preguntas','actual'));
+                        break;
+                        case ($juego->equipo_id >= 1 and $juego->equipo_id < $equipos->id):
+                            $equipo = Equipo::find(($juego->equipo_id + 1));
+                            return view('juego.index',compact('equipo','evento','preguntas','actual'));
+                        break;
+                        case ($juego->equipo_id == $equipos->id):
+                            $equipo = Equipo::find(1);
+                            return view('juego.index',compact('equipo','evento','preguntas','actual'));
+                        break;
+                    }
+                }else{
+                    $preguntas = 0;
+                    return view('juego.index',compact('preguntas','evento'));
+                }
             }
         }else{
             return view('juego.index',compact('evento'));
         }
     }
 
-    public function comodin($opt)
-    {
-
-        if(isset($opt)){
-            $puntajes = Puntaje::all();
-            //return $puntajes[0]->activo;die();
-            switch($puntajes[0]->activo){
-                case 0 : //activar comodines;
-                    foreach($puntajes as $puntaje){
-                        $valor1 = $puntaje->comodin;//10
-                        $valor2 = $puntaje->valor;//3
-                        $puntaje->valor = $valor1;//10
-                        $puntaje->comodin = $valor2;//3
-                        $puntaje->activo = 1;
-                        $puntaje->save();
-                        unset($puntaje);
-
-                    }
-                    return 1;
-                break;
-                case 1 : //desactivar comodines;
-                    foreach($puntajes as $puntaje){
-                        $valor1 = $puntaje->comodin;//3
-                        $valor2 = $puntaje->valor;//10
-                        $puntaje->valor = $valor1;//3
-                        $puntaje->comodin = $valor2;//10
-                        $puntaje->activo = 0;
-                        $puntaje->save();
-                        unset($puntaje);
-
-                    }
-                    return 0;
-                break;
-            }
-        }
-
-        //return view('juego.index', compact('eventos'));
-    }
-/*     public function findEquipos(){
-        $EquipoIglesia = Equipo::with('iglesia')->get();
-        return $EquipoIglesia;
-    } */
-    /*
-    SELECT puntajes.nombre,puntajes.valor,puntajes.comodin, COUNT('preguntas.id') AS preguntas FROM
-puntajes INNER JOIN
-	preguntas ON preguntas.puntaje_id = puntajes.id
-WHERE preguntas.status = 1
-GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
-    */
-
-    public function findPreguntas(){
+    public function dificultad(){
         $data = array();
-        //$preguntas = Pregunta::all();
-        $preguntas = DB::table('puntajes')
+        $dificultades = DB::table('puntajes')
             ->join('preguntas', function ($join) {
                 $join->on('puntajes.id', '=', 'preguntas.puntaje_id');
             })
-            ->select('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin','puntajes.tiempo',\DB::raw('COUNT(preguntas.id) AS cantidad'))
+            ->select('puntajes.id','puntajes.nombre','puntajes.tiempo',\DB::raw('COUNT(preguntas.id) AS cantidad'))
             ->where('preguntas.status','=',1)
-            ->groupBy('puntajes.id','puntajes.nombre','puntajes.valor','puntajes.comodin','puntajes.tiempo')
+            ->where('puntajes.activo','=',1)
+            ->groupBy('puntajes.id','puntajes.nombre','puntajes.tiempo')
             ->orderBy('puntajes.nombre','DESC')
             ->get();
-        foreach($preguntas as $pregunta){
-            $data['data'][] = array(
-                'id' => $pregunta->id,
-                'nombre' => $pregunta->nombre,
-                'valor' => $pregunta->valor,
-                'comodin' => $pregunta->comodin,
-                'tiempo' => $pregunta->tiempo,
-                'cantidad' => $pregunta->cantidad
-            );
+        if(count($dificultades) > 0){
+            foreach($dificultades as $dificultad){
+                $data['data'][] = array(
+                    'id' => $dificultad->id,
+                    'nombre' => $dificultad->nombre,
+                    'tiempo' => $dificultad->tiempo,
+                    'cantidad' => $dificultad->cantidad
+                );
+            }
+            return $data;
+        }else{
+            $data = $data[] = null;
+            return $data;
         }
-        return $data;
+
+    }
+
+    public function preguntas($id){
+        $data = array();
+        $preguntas = Pregunta::where('status','=',1)->where('puntaje_id','=',$id)->orderBy('numero','asc')->get();
+        if(count($preguntas) == 0){
+            return $data = $data[] = null;
+        }else{
+            foreach($preguntas as $pregunta){
+                $data['data'][] = array(
+                    'id' => $pregunta->id,
+                    'numero' => $pregunta->numero,
+                    'punto' => $pregunta->punto
+                );
+            }
+            return $data;
+        }
     }
 
     public function store(StoreJuegoRequest $request)
@@ -138,71 +118,49 @@ GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
         return redirect()->route('pregunta.index');
     }
 
-    public function edit(Pregunta $pregunta, $puntaje, $equipo)
+    public function edit($e, $p)
     {
         $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
-        $equipo = Equipo::with('iglesia')->find($equipo);
-        $pregunta = $pregunta->with('puntaje')->with('respuestas')->where('preguntas.status','=',1)->where('puntaje_id','=',$puntaje)->inRandomOrder()->first();
+        $equipo = Equipo::with('iglesia')->find($e);
+        $pregunta = Pregunta::with('puntaje')->where('preguntas.status','=',1)->where('preguntas.id','=',$p)->get();
         return view('juego.edit', compact('pregunta','equipo','evento'));
     }
 
     public function update(Request $request)
     {
+        //return $request->all();die();
         switch($request->puntaje_id){
-            case 1://Verdadero y falso
-                //return $request->all();die();
+            case 4://comodines
                 $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
                 $juego = new Juego([
                     'fecha' => date('Y-m-d'),
-                    'puntos' => ($request->validez === $request->r_correcta and $request->puntos > 0)? $request->puntos : 0,
+                    'puntos' => ($request->validez == 1 and $request->opcion > 0) ? $request->opcion : 0,
                     'tiempo' => $request->duracion,
-                    'seleccion' => $request->validez,
-                    'acierto' => ($request->validez === $request->r_correcta and $request->puntos > 0)? 1 : 0,
+                    'acierto' => ($request->validez == 1 and $request->opcion > 0) ? 1 : 0,
                     'equipo_id' => $request->equipo,
                     'evento_id' => $evento[0]->id,
-                    'respuesta_id' => $request->respuesta_id
+                    'pregunta_id' => $request->pregunta_id
                 ]);
                 $juego->save();
                 unset($juego);
                 Pregunta::where('id',$request->pregunta_id)->update(['status'=>0]);
                 return redirect(route('juego.index'));
             break;
-            case 2://seleccion simple
-                //return $request->all();die();
+            default://preguntas normales
                 $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
                 $juego = new Juego([
                     'fecha' => date('Y-m-d'),
-                    'puntos' => ($request->respuesta_id === $request->seleccion and $request->puntos > 0)? $request->puntos : 0,
+                    'puntos' => ($request->validez == 1 and $request->puntos > 0) ? $request->puntos : 0,
                     'tiempo' => $request->duracion,
-                    'seleccion' => $request->seleccion,
-                    'acierto' => ($request->respuesta_id === $request->seleccion and $request->puntos > 0)? 1 : 0,
+                    'acierto' => ($request->validez == 1 and $request->puntos > 0) ? 1 : 0,
                     'equipo_id' => $request->equipo,
                     'evento_id' => $evento[0]->id,
-                    'respuesta_id' => $request->respuesta_id
+                    'pregunta_id' => $request->pregunta_id
                 ]);
                 $juego->save();
                 unset($juego);
                 Pregunta::where('id',$request->pregunta_id)->update(['status'=>0]);
                 return redirect(route('juego.index'));
-            break;
-            case 3://desarrollo
-                //return $request->all();die();
-                $evento = Evento::where('status','=',1)->get();//devuelve informacion del Evento activo
-                $juego = new Juego([
-                    'fecha' => date('Y-m-d'),
-                    'puntos' => $request->opcion,
-                    'tiempo' => $request->duracion,
-                    'seleccion' => $request->opcion,
-                    'acierto' => ($request->opcion > 0)? 1 : 0,
-                    'equipo_id' => $request->equipo,
-                    'evento_id' => $evento[0]->id,
-                    'respuesta_id' => $request->respuesta_id
-                ]);
-                $juego->save();
-                unset($juego);
-                Pregunta::where('id',$request->pregunta_id)->update(['status'=>0]);
-                return redirect(route('juego.index'));
-            break;
         }
     }
 
@@ -210,6 +168,7 @@ GROUP BY puntajes.nombre,puntajes.valor,puntajes.comodin;
     {
         Juego::truncate();
         DB::table('preguntas')->update(['status' => 1]);
+        Puntaje::where('id','=',4)->update(['activo'=>0]);
         return redirect()->route('juego.index');
     }
 

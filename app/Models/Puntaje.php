@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Puntaje extends Model
 {
-    protected $fillable = ['nombre','valor','comodin','tiempo'];
+    protected $fillable = ['id','nombre','tiempo','activo'];
     //Relacion 1:n - Preguntas
     public function Preguntas(){
         return $this->hasMany(Pregunta::class);

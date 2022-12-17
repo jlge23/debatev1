@@ -5,6 +5,7 @@ import "datatables.net-dt/js/dataTables.dataTables";
 //jquery Validate
 //import "jquery-validation/dist/additional-methods";
 import "jquery-validation/dist/jquery.validate";
+import { get } from 'lodash';
 //import selectpicker from "bootstrap-select/dist/js/bootstrap-select";
 //import "bootstrap-select/sass/bootstrap-select.scss";
 $(document).ready(function(){
@@ -34,12 +35,15 @@ $(document).ready(function(){
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         },
-        "order": [[0, 'desc']],
+        "order": [[0, 'asc']],
+        //['id','numero','punto','pregunta','respuesta','puntaje_id','status'];
         "columns" : [
             {"data":"id"},
-            {"data":"descripcion"},
-            {"data":"tiempo"},
-            {"data":"puntaje"},
+            {"data":"numero"},
+            {"data":"punto"},
+            {"data":"pregunta"},
+            {"data":"respuesta"},
+            {"data":"nombre"},
             {"data":"status","render": function (data, type, row) {
                     switch(data){
                         case '0' :
@@ -51,20 +55,19 @@ $(document).ready(function(){
                     }
                 }
             },
-            {"data":"respuestas","render": function (data, type, row) {
-                    /* switch(data){
-                        case '0' :
-                            return "<label class='text text-danger'><strong>Inactivo</strong></label>";
-                        break;
-                        case '1' :
-                            return "<label class='text text-success'><strong>Activo</strong></label>";
-                        break;
-                    } */
-                    return data;
-                }
-            },
             {"data":"defaultContent"}
         ]
+    });
+
+    //numero de pregunta
+    $("select#puntaje_id").on("change",function(){
+        var val = $(this).val();
+        $.get({
+            type:"get",
+            url:"/pregunta/"+val
+        }).done(function(result){
+            $("input#numero").val(result);
+        })
     });
     //Agregar pregunta
     $("form#nueva_pregunta").validate({
@@ -93,7 +96,7 @@ $(document).ready(function(){
             status : {required : "EStatus de la pregunta requerido"}
         },
         submitHandler : function(){
-            if(confirm("¿Confirma el registro de los datos?"))              
+            if(confirm("¿Confirma el registro de los datos?"))
                 $("form#nueva_pregunta")[0].submit();
                 //console.log($("form#nueva_pregunta").serialize());
         }
@@ -125,7 +128,7 @@ $(document).ready(function(){
             status : {required : "EStatus de la pregunta requerido"}
         },
         submitHandler : function(){
-            if(confirm("¿Confirma la actualización los datos? ACTUALIZAR"))                
+            if(confirm("¿Confirma la actualización los datos? ACTUALIZAR"))
                 $("form#editar_pregunta")[0].submit();
                 //console.log($("form#editar_pregunta").serialize());
         }

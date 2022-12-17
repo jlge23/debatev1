@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title','Datos de la Pregunta')
-    
 @vite(['resources/js/preguntas.js','resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css'])
 @section('content')
     <div class="container">
@@ -13,11 +11,12 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Descripción</th>
-                    <th>Tiempo</th>
-                    <th>Puntaje</th>
-                    <th>Estatus</th>
+                    <th>Pregunta N°</th>
+                    <th>Punto</th>
+                    <th>Pregunta</th>
                     <th>Respuesta</th>
+                    <th>Tipo de pregunta</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -25,31 +24,15 @@
                 @foreach ($preguntas as $pregunta)
                 <tr>
                     <td>{{$pregunta->id}}</td>
-                    <td>{{$pregunta->descripcion}}</td>
-                    <td>{{$pregunta->tiempo}}</td>
-                    <td>{{$pregunta->puntaje->nombre." - ".$pregunta->puntaje->valor}}</label></td>
+                    <td>{{$pregunta->numero}}</td>
+                    <td>{{$pregunta->punto}}</td>
+                    <td>{{$pregunta->pregunta}}</td>
+                    <td>{{$pregunta->respuesta}}</td>
+                    <td>{{$pregunta->puntaje->nombre." - Timepo: ".$pregunta->puntaje->tiempo}}</label></td>
                     <td>{{$pregunta->status}}</td>
                     <td>
-                        <ul>
-                        @foreach($pregunta->respuestas as $respuesta)
-                            @if($respuesta->validez == 1)
-                                <li>
-                                    <label class="text text-success">
-                                        
-                                        <b>{{$respuesta->respuesta}}</b>
-                                    </label>
-                                </li>
-                            @else
-                                <li>
-                                    <label class="text text-danger">{{$respuesta->respuesta}}</label>  
-                                </li>
-                            @endif                         
-                        @endforeach
-                        </ul>    
-                    </td>
-                    <td>
                         <div class="btn-group" role="group">
-                            
+
                             <form action="{{route('pregunta.destroy',$pregunta->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -64,11 +47,12 @@
             <tfoot>
                 <tr>
                     <th>Id</th>
-                    <th>Descripción</th>
-                    <th>Tiempo</th>
-                    <th>Puntaje</th>
-                    <th>Estatus</th>
+                    <th>Pregunta N°</th>
+                    <th>Punto</th>
+                    <th>Pregunta</th>
                     <th>Respuesta</th>
+                    <th>Tipo de pregunta</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                 </tr>
             </tfoot>

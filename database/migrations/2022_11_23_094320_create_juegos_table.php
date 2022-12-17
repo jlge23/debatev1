@@ -23,19 +23,18 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->integer('puntos')->default(0);
-            $table->integer('seleccion')->nullable();
             $table->decimal('tiempo',10,2);
             $table->boolean('acierto');
             $table->unsignedBigInteger('equipo_id');
             $table->unsignedBigInteger('evento_id');
-            $table->unsignedBigInteger('respuesta_id');
+            $table->unsignedBigInteger('pregunta_id');
             $table->foreign('equipo_id')->references('id')->on('equipos')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->foreign('evento_id')->references('id')->on('eventos')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreign('respuesta_id')->references('id')->on('respuestas')
+            $table->foreign('pregunta_id')->references('id')->on('preguntas')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->timestamps();

@@ -15,8 +15,8 @@ $(document).ready(function(){
    //Datatables resultados
    var table = $("table#DT_informe").DataTable({
       responsive: true,
-      scrollY: '450px',
       paging: true,
+      pageLength: 10,
       "language": {
          "sProcessing":     "Procesando...",
          "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -41,7 +41,7 @@ $(document).ready(function(){
             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
          }
       },
-      "order": [[0, 'asc']],
+      "order": [[0, 'desc']],
       "ajax":{
          "type":"get",
          "url":"informe/resultados"

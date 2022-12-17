@@ -31,7 +31,24 @@ $(document).ready(function(){
                 "sSortAscending":  ": Activar para ordenar la  columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-        }
+        },
+        "columns" : [
+            {"data":"id"},
+            {"data":"nombre"},
+            {"data":"tiempo"},
+            {"data":"activo","render": function (data, type, row) {
+                    switch(data){
+                        case '0' :
+                            return "<label class='text text-danger'><strong>Inactivo</strong></label>";
+                        break;
+                        case '1' :
+                            return "<label class='text text-success'><strong>Activo</strong></label>";
+                        break;
+                    }
+                }
+            },
+            {"data":"defaultContent"}
+        ]
     });
     //Agregar puntaje
     $("form#nuevo_puntaje").validate({
@@ -39,26 +56,24 @@ $(document).ready(function(){
             nombre : {
                 required : true
             },
-            valor : {
+            tiempo : {
                 required : true,
                 number : true
             },
-            comodin : {
-                required : true,
-                number : true
+            activo : {
+                required : true
             }
         },
         messages : {
             nombre : {
                 required : "Nombre del puntaje requerido"
             },
-            valor : {
-                required : "Valor de la ponderación requerida",
-                number : "El valor ponderante debe ser numérico"
+            tiempo : {
+                required : "Valor del tiempo de duración es requerido",
+                number : "El valor del tiempo de duración debe ser numérico"
             },
-            comodin : {
-                required : "Valor de la ponderación del comodin requerido",
-                number : "El valor ponderante de comodin debe ser numérico"
+            activo : {
+                required : "Debe seleccionar una opción"
             }
         },
         submitHandler : function(){
@@ -73,34 +88,24 @@ $(document).ready(function(){
             nombre : {
                 required : true
             },
-            valor : {
-                required : true,
-                number : true
-            },
-            comodin : {
-                required : true,
-                number : true
-            },
             tiempo : {
                 required : true,
                 number : true
+            },
+            activo : {
+                required : true
             }
         },
         messages : {
             nombre : {
                 required : "Nombre del puntaje requerido"
             },
-            valor : {
-                required : "Valor de la ponderación requerida",
-                number : "El valor ponderante debe ser numérico"
-            },
-            comodin : {
-                required : "Valor de la ponderación del comodin requerido",
-                number : "El valor ponderante de comodin debe ser numérico"
-            },
             tiempo : {
                 required : "Valor del tiempo de duración es requerido",
                 number : "El valor del tiempo de duración debe ser numérico"
+            },
+            activo : {
+                required : "Debe estar activo"
             }
         },
         submitHandler : function(){

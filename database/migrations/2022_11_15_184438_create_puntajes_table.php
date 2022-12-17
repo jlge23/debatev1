@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('puntajes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
-            $table->integer('valor')->unique();
-            $table->integer('comodin')->unique();
             $table->integer('tiempo');
             $table->boolean('activo')->default(0);
             $table->timestamps();

@@ -1,63 +1,61 @@
-<label>Descripción:&nbsp;
-    <textarea name="descripcion" id="descripcion" class="form-control" rows="2" cols="50">{{$pregunta->descripcion ?? old('descripcion')}}</textarea>
-</label>
-@error('descripcion')
-    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
-@enderror
-<br>
-<label>Tiempo de duracion de la pregunta&nbsp;
-    <select name="tiempo" id="tiempo" class="form-select">
+<label>Dificiltad de la pregunta:&nbsp;
+    <select name="puntaje_id" id="puntaje_id" class="form-select">
         <option value="">Seleccione</option>
         @if(isset($puntajes))
             @foreach ($puntajes as $puntaje)
                 @if(isset($pregunta))
-                    @if (($pregunta->puntaje->tiempo == $puntaje->tiempo) or ($pregunta->puntaje->tiempo == old('tiempo')))
-                        <option value="{{$puntaje->tiempo}}" selected>{{$puntaje->tiempo}}&nbsp;segundos</option>
+                    @if (($pregunta->puntaje_id == $puntaje->id) or ($pregunta->puntaje_id == old('puntaje_id')))
+                        <option value="{{$puntaje->id}}" selected>{{$puntaje->nombre}}</option>
                     @else
-                        <option value="{{$puntaje->tiempo}}">{{$puntaje->tiempo}}&nbsp;segundos</option>
-                    @endif
-                @else
-                    @if ($puntaje->id == old('tiempo'))
-                        <option value="{{$puntaje->tiempo}}" selected>{{$puntaje->tiempo}}&nbsp;segundos</option>
-                    @else
-                        <option value="{{$puntaje->tiempo}}">{{$puntaje->tiempo}}&nbsp;segundos</option>
-                    @endif
-                @endif
-            @endforeach
-        @else
-            <option value="#" disabled>No se encuentran Tiempos registrados</option>
-        @endif
-    </select>
-</label>
-@error('tiempo')
-    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
-@enderror
-<br>
-<label>Puntaje de la pregunta:&nbsp;
-    <select name="puntaje_id" id="puntaje_id" class="form-select">
-        @if(isset($puntajes))
-            @foreach ($puntajes as $puntaje)
-                @if(isset($pregunta))
-                    @if (($pregunta->puntaje_id == $puntaje->id) or ($puntaje->id == old('puntaje_id')))
-                        <option value="{{$puntaje->id}}" selected>{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
-                    @else
-                        <option value="{{$puntaje->id}}">{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
+                        <option value="{{$puntaje->id}}">{{$puntaje->nombre}}</option>
                     @endif
                 @else
                     @if ($puntaje->id == old('puntaje_id'))
-                        <option value="{{$puntaje->id}}" selected>{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
+                        <option value="{{$puntaje->id}}" selected>{{$puntaje->nombre}}</option>
                     @else
-                        <option value="{{$puntaje->id}}">{{$puntaje->nombre." [".$puntaje->valor."]"}}</option>
+                        <option value="{{$puntaje->id}}">{{$puntaje->nombre}}</option>
                     @endif
                 @endif
             @endforeach
         @else
-            <option value="#" disabled>No se encuentran puntajes o lugares registrados</option>
+            <option value="#" disabled>No hay información de puntajes registrados</option>
         @endif
     </select>
-</label>&nbsp;
+</label>
 @error('puntaje_id')
-<br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
+    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
+@enderror
+<br>
+
+<label>Numero:&nbsp;
+    <input type="number" name="numero" id="numero" class="form-control" min="1" max="99" value="{{$pregunta->numero ?? old('numero')}}" readonly>
+</label>
+@error('respuesta')
+    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
+@enderror
+<br>
+
+<label>Descripción de la Pregunta:&nbsp;
+    <textarea name="pregunta" id="pregunta" class="form-control" rows="2" cols="50">{{$pregunta->pregunta ?? old('pregunta')}}</textarea>
+</label>
+@error('pregunta')
+    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
+@enderror
+<br>
+
+<label>Respuesta:&nbsp;
+    <textarea name="respuesta" id="respuesta" class="form-control" rows="2" cols="50">{{$pregunta->respuesta ?? old('respuesta')}}</textarea>
+</label>
+@error('respuesta')
+    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
+@enderror
+<br>
+
+<label>Puntaje:&nbsp;
+    <input type="number" name="punto" id="punto" class="form-control" min="1" max="99" value="{{$pregunta->punto ?? old('punto')}}">
+</label>
+@error('respuesta')
+    <br><small class="text text-danger">*&nbsp;{{$message}}</small><br>
 @enderror
 <br>
 <label>Estatus de la pregunta:&nbsp;
